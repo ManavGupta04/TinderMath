@@ -1,9 +1,11 @@
 package com.example.manav.tindermaths;
 
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+
 
 public class QuizUI extends AppCompatActivity {
 
@@ -11,8 +13,8 @@ public class QuizUI extends AppCompatActivity {
     private String difficulty;
     private boolean questionAnswer;
     //textboxes/labels
-    TextView lblDifficulty = (TextView) findViewById(R.id.lblDifficulty);
-    TextView lblQuestion = (TextView) findViewById(R.id.txtQuestion);
+    TextView lblDifficulty;
+    TextView lblQuestions;
 
     //setup questions class
     question questions;
@@ -21,7 +23,8 @@ public class QuizUI extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz_ui);
-
+        lblDifficulty = (TextView) findViewById(R.id.lblDifficulty);
+        lblQuestions = (TextView) findViewById(R.id.txtQuestion);
         //set difficulty text
         Bundle b = getIntent().getExtras();
         difficulty = b.getString("id");
@@ -35,7 +38,7 @@ public class QuizUI extends AppCompatActivity {
         String[] readQuestion = questions.getNextQuestion();
         //set question text
         String questionText = readQuestion[0];
-        lblQuestion.setText(questionText);
+        lblQuestions.setText(questionText);
         //set if true = correct, false= wrong
         if(readQuestion[1].equals("FALSE"))
         {
@@ -45,7 +48,6 @@ public class QuizUI extends AppCompatActivity {
         {
             questionAnswer = true;
         }
-        lblQuestion.setText(questionText);
     }
 
     public void checkAnswerCorrect(View view){
@@ -55,9 +57,10 @@ public class QuizUI extends AppCompatActivity {
             correct = true;
         }
         if(correct == questionAnswer){
-            System.out.println("Correct");
+            Snackbar.make(view, "Correct" , Snackbar.LENGTH_LONG).setAction("Action", null).show();
         } else {
-            System.out.println("False");
+            Snackbar.make(view, "False" , Snackbar.LENGTH_LONG).setAction("Action", null).show();
+
         }
         nextQuestion();
     }

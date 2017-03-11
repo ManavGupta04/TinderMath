@@ -16,7 +16,7 @@ public class question {
 
 
     public question(String filename) {
-        readFile(filename);
+        //readFile(filename);
     }
 
 
@@ -25,6 +25,7 @@ public class question {
         FileReader questionFile = null;
 
         try {
+
             questionFile = new FileReader(filename);
             fileReader = new BufferedReader(questionFile);
         } catch (FileNotFoundException e) {
@@ -34,7 +35,7 @@ public class question {
 
     public String[] getNextQuestion()
     {
-        String[] questionLines = null;
+        /*String[] questionLines = null;
         try {
             questionLine = fileReader.readLine();
             questionLines = questionLine.split(",");
@@ -42,8 +43,9 @@ public class question {
             answer = questionLines[1];
         } catch (IOException e) {
             System.out.println("IOException in Read");
-        }
-        return questionLines;
+        }*/
+        String[] hardCode = {"1+1=3", "FALSE"};
+        return hardCode;
     }
 
 }

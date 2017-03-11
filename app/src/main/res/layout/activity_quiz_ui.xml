@@ -14,75 +14,61 @@
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/lblDifficulty"
                 android:layout_width="371dp"
                 android:layout_height="47dp"
                 android:text="Difficulty: "
-                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                tools:layout_editor_absoluteX="0dp"
-                tools:layout_editor_absoluteY="3dp" />
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"/>
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/txtQuestion"
                 android:layout_width="333dp"
                 android:layout_height="145dp"
                 android:text="QUESTION GOES HERE"
-                android:textAppearance="@style/TextAppearance.AppCompat.Display2"
-                tools:layout_editor_absoluteX="35dp"
-                tools:layout_editor_absoluteY="170dp" />
-
-            <TextView
-                android:id="@+id/lblQuestion"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TextView"
-                android:textAppearance="@style/TextAppearance.AppCompat.Display2"
-                tools:layout_editor_absoluteX="16dp"
-                tools:layout_editor_absoluteY="117dp"
-                tools:text="Question:" />
+                android:textAppearance="@style/TextAppearance.AppCompat.Display2"/>
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent">
 
             <Button
                 android:id="@+id/btnCorrect"
                 android:layout_width="135dp"
                 android:layout_height="69dp"
-                android:text="Correct"/>
+                android:onClick="checkAnswerCorrect"
+                android:text="Correct" />
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent">
 
             <Button
                 android:id="@+id/btnWrong"
                 android:layout_width="135dp"
                 android:layout_height="69dp"
                 android:onClick="checkAnswerCorrect"
-                android:text="Wrong"/>
+                android:text="Wrong" />
         </TableRow>
 
-        <TableRow>
+        <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent">
 
             <Button
                 android:id="@+id/btnQuit"
                 android:layout_width="135dp"
                 android:layout_height="69dp"
-                android:onClick="checkAnswerCorrect"
-                android:text="Quit"/>
+                android:text="Quit" />
 
         </TableRow>
     </TableLayout>
