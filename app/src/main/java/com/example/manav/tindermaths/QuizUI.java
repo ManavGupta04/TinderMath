@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
-import com.facebook.FacebookSdk;
+//import com.facebook.FacebookSdk;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.GestureDetector;
@@ -35,8 +35,9 @@ public class QuizUI extends AppCompatActivity implements OnGestureListener {
     TextView lblDifficulty;
     TextView lblQuestions;
     TextView lblScore;
-    //setup questions class
-    question questions;
+
+    InputStream is;
+    BufferedReader reader;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,8 +52,7 @@ public class QuizUI extends AppCompatActivity implements OnGestureListener {
         Bundle b = getIntent().getExtras();
         difficulty = b.getString("id");
         lblDifficulty.setText("Difficulty: " + difficulty);
-        //questions = new question((difficulty + ".txt"));
-        readFile();
+        readFile(difficulty);
         Thread thread = new Thread(new Runnable(){
             @Override
             public void run(){
@@ -83,28 +83,46 @@ public class QuizUI extends AppCompatActivity implements OnGestureListener {
 
     }
 
-    public void readFile(){
-        String data = "";
-        StringBuffer sbuffer = new StringBuffer();
-        InputStream is = this.getResources().openRawResource(R.raw.primary);
-        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-        if(is != null){
-            try {
-                System.out.println("hey");
-                while ((data = reader.readLine()) != null){
-                    System.out.println(data);
-                    sbuffer.append(data + "n");
-                }
-                System.out.println(sbuffer);
-                is.close();
-            } catch (IOException e){
-                System.out.println("werthgfvdsadvfbv");
-            }
+    public void readFile(String filename){
+        switch (filename)
+        {
+            case "primary":
+                is = this.getResources().openRawResource(R.raw.primary);
+                break;
+            case "gcse":
+                is = this.getResources().openRawResource(R.raw.gcse);
+                break;
+            case "alevel":
+                is = this.getResources().openRawResource(R.raw.alevel);
+                break;
+            case "degree":
+                is = this.getResources().openRawResource(R.raw.degree);
+                break;
+            default:
+                is = this.getResources().openRawResource(R.raw.primary);
         }
+
+        reader = new BufferedReader(new InputStreamReader(is));
     }
 
+
+    public String[] getNextQuestion()
+    {
+        String[] question = null;
+        try {
+            String questoinLine = reader.readLine();
+            question = questoinLine.split(",");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        return question;
+    }
+
+
     public void nextQuestion() {
-        String[] readQuestion = questions.getNextQuestion();
+        String[] readQuestion = getNextQuestion();
         //set question text
         String questionText = readQuestion[0];
         lblQuestions.setText(questionText);

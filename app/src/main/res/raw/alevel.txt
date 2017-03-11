@@ -1,0 +1,8 @@
+The differential of sin(x) = cos(x),TRUE
+The differential of cos(x) = -sin(x),TRUE
+There are pi radians in a circle,FALSE
+The differential of e^-x = -e^x,FALSE
+The differential of e^2x = 2e^2x,TRUE
+|x+iy|=z,TRUE
+r(cosx+isinx)=z,TRUE
+n(cos(x)+isin(x))=(cos(nx)+isin(nx),FALSE

@@ -16,18 +16,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void selectCategory(View view){
+        Intent i;
         switch(view.getId()) {
             case R.id.Primary:
-                System.out.println("Primary");
-                Intent i = new Intent(this, QuizUI.class);
+                i = new Intent(this, QuizUI.class);
                 i.putExtra("id", "primary");
                 startActivity(i);
                 break;
             case R.id.GCSE:
-                System.out.println("GCSE");
+                i = new Intent(this, QuizUI.class);
+                i.putExtra("id", "gcse");
+                startActivity(i);
                 break;
             case R.id.A_Level:
-                System.out.println("A Level");
+                i = new Intent(this, QuizUI.class);
+                i.putExtra("id", "alevel");
+                startActivity(i);
                 break;
         }
     }
