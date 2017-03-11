@@ -11,7 +11,7 @@
 
 
     <TableLayout
-        android:layout_width="368dp"
+        android:layout_width="344dp"
         android:layout_height="495dp"
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="8dp">
@@ -19,14 +19,23 @@
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            >
+
 
             <TextView
                 android:id="@+id/lblTextScore"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="0dip"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
                 android:text="Score: 0/0"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+
+            <TextView
+                android:id="@+id/lblTimeLeft"
+                android:layout_width="0dip"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:text="Time Left: " />
+
         </TableRow>
         <TableRow
             android:layout_width="match_parent"
@@ -34,10 +43,12 @@
 
             <TextView
                 android:id="@+id/lblDifficulty"
-                android:layout_width="371dp"
-                android:layout_height="47dp"
+                android:layout_width="0dip"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
                 android:text="Difficulty: "
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1"/>
+
         </TableRow>
 
         <TableRow
@@ -46,10 +57,11 @@
 
             <TextView
                 android:id="@+id/txtQuestion"
-                android:layout_width="333dp"
-                android:layout_height="145dp"
+                android:layout_width="0dip"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
                 android:text="QUESTION GOES HERE"
-                android:textAppearance="@style/TextAppearance.AppCompat.Display2"/>
+                android:textAppearance="@style/TextAppearance.AppCompat.Display2" />
         </TableRow>
 
         <TableRow
@@ -58,8 +70,9 @@
 
             <Button
                 android:id="@+id/btnCorrect"
-                android:layout_width="135dp"
-                android:layout_height="69dp"
+                android:layout_width="0dip"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
                 android:onClick="checkAnswerCorrect"
                 android:text="Correct" />
         </TableRow>
@@ -70,8 +83,9 @@
 
             <Button
                 android:id="@+id/btnWrong"
-                android:layout_width="135dp"
-                android:layout_height="69dp"
+                android:layout_width="0dip"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
                 android:onClick="checkAnswerCorrect"
                 android:text="Wrong" />
         </TableRow>
@@ -82,8 +96,9 @@
 
             <Button
                 android:id="@+id/btnQuit"
-                android:layout_width="135dp"
-                android:layout_height="69dp"
+                android:layout_width="0dip"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
                 android:text="Quit" />
 
         </TableRow>
