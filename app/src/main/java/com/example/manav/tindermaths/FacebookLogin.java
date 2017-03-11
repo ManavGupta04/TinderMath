@@ -1,57 +1,64 @@
 package com.example.manav.tindermaths;
 
+import android.app.Application;
 import android.content.Intent;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.FragmentActivity;
-import android.support.v7.app.AppCompatActivity;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Base64;
+import android.util.Log;
+import android.widget.TextView;
 
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
-import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 
-public class FacebookLogin extends AppCompatActivity {
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
+public class FacebookLogin  extends AppCompatActivity {
+
+    //global variablkes
+    LoginButton loginButton;
+    TextView textView;
+    CallbackManager callbackManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_facebook_login);
-        Intent i = getIntent();
+        //FacebookSdk.sdkInitialize(getApplicationContext());
+        setContentView(R.layout.activity_main);
+        setTitle("Log In");
+        loginButton = (LoginButton)findViewById(R.id.fb_login_bn);
+        textView = (TextView)findViewById(R.id.textView);
+        callbackManager = CallbackManager.Factory.create();
+        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+
+                textView.setText("Login Sucessfull");
+
+            }
+
+            @Override
+            public void onCancel() {
+                textView.setText("Login Cancelled");
+            }
+
+            @Override
+            public void onError(FacebookException error) {
+
+            }
+        });
     }
 
-    //login button stuff
-
-    public class MainActivity extends FragmentActivity {
-        CallbackManager callbackManager;
-        @Override
-        public void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            callbackManager = CallbackManager.Factory.create();
-            LoginButton loginButton = (LoginButton) FacebookLogin.this.findViewById(R.id.login_button);
-            loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>()
-            {
-                @Override
-                public void onSuccess(LoginResult loginResult) {
-                    // App code
-                    System.out.println("FB LOGIn SUCESS");
-                }
-
-                @Override
-                public void onCancel() {
-                    // App code
-                }
-
-                @Override
-                public void onError(FacebookException exception) {
-                    // App code
-                }
-
-            });
-        }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        callbackManager.onActivityResult(requestCode, resultCode, data);
     }
-
 }
