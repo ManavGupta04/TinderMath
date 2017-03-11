@@ -35,46 +35,41 @@ public class QuizUI extends AppCompatActivity {
         lblDifficulty.setText("Difficulty: " + difficulty);
         questions = new question((difficulty + ".txt"));
         nextQuestion();
+
+
     }
 
-    public void nextQuestion()
-    {
+    public void nextQuestion() {
         String[] readQuestion = questions.getNextQuestion();
         //set question text
         String questionText = readQuestion[0];
         lblQuestions.setText(questionText);
         //set if true = correct, false= wrong
-        if(readQuestion[1].equals("FALSE"))
-        {
+        if (readQuestion[1].equals("FALSE")) {
             questionAnswer = false;
-        }
-        else {
+        } else {
             questionAnswer = true;
         }
     }
 
-    public void checkAnswerCorrect(View view){
+    public void checkAnswerCorrect(View view) {
         int answerGiven = view.getId();
         boolean correct = false;
-        if(answerGiven == R.id.btnCorrect){
+        if (answerGiven == R.id.btnCorrect) {
             correct = true;
         }
-        if(correct == questionAnswer){
-            Snackbar.make(view, "Correct" , Snackbar.LENGTH_LONG).setAction("Action", null).show();
-            score ++;
+        if (correct == questionAnswer) {
+            Snackbar.make(view, "Correct", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+            score++;
         } else {
-            Snackbar.make(view, "False" , Snackbar.LENGTH_LONG).setAction("Action", null).show();
+            Snackbar.make(view, "False", Snackbar.LENGTH_LONG).setAction("Action", null).show();
         }
-        numberOfAnsweredQuestions ++;
+        numberOfAnsweredQuestions++;
         //redraw scores
-    lblScore.setText("Score: " + score + "/" + numberOfAnsweredQuestions);
+        lblScore.setText("Score: " + score + "/" + numberOfAnsweredQuestions);
         nextQuestion();
     }
 
 
-
-
-
-    //gesture stuff below
 
 }
