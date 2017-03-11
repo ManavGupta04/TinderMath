@@ -91,27 +91,15 @@ public class QuizUI extends AppCompatActivity implements OnGestureListener {
     @Override
     public boolean onFling(MotionEvent motionEvent1, MotionEvent motionEvent2, float X, float Y) {
 
-        if(motionEvent1.getY() - motionEvent2.getY() > 50){
 
-            Toast.makeText(QuizUI.this , " Swipe Up " , Toast.LENGTH_LONG).show();
-
-            return true;
-        }
-
-        if(motionEvent2.getY() - motionEvent1.getY() > 50){
-
-            Toast.makeText(QuizUI.this , " Swipe Down " , Toast.LENGTH_LONG).show();
-
-            return true;
-        }
-
+    //swipe left
         if(motionEvent1.getX() - motionEvent2.getX() > 50){
 
             Toast.makeText(QuizUI.this , " Swipe Left " , Toast.LENGTH_LONG).show();
 
             return true;
         }
-
+    //swipe right
         if(motionEvent2.getX() - motionEvent1.getX() > 50) {
 
             Toast.makeText(QuizUI.this, " Swipe Right ", Toast.LENGTH_LONG).show();
@@ -164,8 +152,6 @@ public class QuizUI extends AppCompatActivity implements OnGestureListener {
 
     @Override
     public boolean onDown(MotionEvent arg0) {
-
-        // TODO Auto-generated method stub
 
         return false;
     }
