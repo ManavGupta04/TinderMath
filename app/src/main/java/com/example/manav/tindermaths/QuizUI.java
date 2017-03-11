@@ -165,7 +165,7 @@ public class QuizUI extends AppCompatActivity implements OnGestureListener {
             Snackbar.make(view, "Correct", Snackbar.LENGTH_LONG).setAction("Action", null).show();
             score++;
         } else {
-            Snackbar.make(view, "False", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+            Snackbar.make(view, "Wrong", Snackbar.LENGTH_LONG).setAction("Action", null).show();
         }
         numberOfAnsweredQuestions++;
         //redraw scores
@@ -183,7 +183,7 @@ public class QuizUI extends AppCompatActivity implements OnGestureListener {
             Snackbar.make(cl, "Correct", Snackbar.LENGTH_LONG).setAction("Action", null).show();
             score++;
         } else {
-            Snackbar.make(cl, "False", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+            Snackbar.make(cl, "Wrong", Snackbar.LENGTH_LONG).setAction("Action", null).show();
         }
         numberOfAnsweredQuestions++;
         //redraw scores
