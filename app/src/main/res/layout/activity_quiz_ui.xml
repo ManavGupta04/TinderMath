@@ -69,6 +69,7 @@
                 android:id="@+id/btnWrong"
                 android:layout_width="135dp"
                 android:layout_height="69dp"
+                android:onClick="checkAnswerCorrect"
                 android:text="Wrong"/>
         </TableRow>
 
@@ -80,6 +81,7 @@
                 android:id="@+id/btnQuit"
                 android:layout_width="135dp"
                 android:layout_height="69dp"
+                android:onClick="checkAnswerCorrect"
                 android:text="Quit"/>
 
         </TableRow>

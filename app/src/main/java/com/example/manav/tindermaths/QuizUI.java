@@ -2,6 +2,7 @@ package com.example.manav.tindermaths;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 public class QuizUI extends AppCompatActivity {
@@ -36,11 +37,26 @@ public class QuizUI extends AppCompatActivity {
         String questionText = readQuestion[0];
         lblQuestion.setText(questionText);
         //set if true = correct, false= wrong
-        if()
+        /*if()
         {
 
         }
         questionAnswer = readQuestion[1];
+        */
+    }
+
+    public void checkAnswerCorrect(View view){
+        int answerGiven = view.getId();
+        boolean correct = false;
+        if(answerGiven == R.id.btnCorrect){
+            correct = true;
+        }
+        if(correct == questionAnswer){
+            System.out.println("Correct");
+        } else {
+            System.out.println("False");
+        }
+        nextQuestion();
     }
     /*
     //constructor
