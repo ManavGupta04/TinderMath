@@ -3,6 +3,7 @@ package com.example.manav.tindermaths;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
+import java.lang.*;
 
 public class QuizUI extends AppCompatActivity {
 
@@ -36,11 +37,15 @@ public class QuizUI extends AppCompatActivity {
         String questionText = readQuestion[0];
         lblQuestion.setText(questionText);
         //set if true = correct, false= wrong
-        if()
+        if(readQuestion[1].equals("FALSE"))
         {
-
+            questionAnswer = false;
         }
-        questionAnswer = readQuestion[1];
+        else
+        {
+            questionAnswer = true;
+        }
+
     }
     /*
     //constructor
