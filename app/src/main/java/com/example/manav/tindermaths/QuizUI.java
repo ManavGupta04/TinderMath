@@ -80,7 +80,8 @@ public class QuizUI extends AppCompatActivity implements OnGestureListener {
                 long timeTaken = endTime - startTime;
                 float timeTakenSeconds = timeTaken / 1000;
                 Intent i = new Intent(QuizUI.this, EndGame.class);
-                i.putExtra("score", "It took you " + timeTakenSeconds + " to complete 20 questions");
+                i.putExtra("score", "You got " + (score*100)/20 + "% accuracy");
+                i.putExtra("time", "It took you " + timeTakenSeconds + " seconds to complete 20 questions");
                 startActivity(i);
             }
         });
@@ -89,10 +90,7 @@ public class QuizUI extends AppCompatActivity implements OnGestureListener {
         //gesture
         gestureDetector = new GestureDetector(QuizUI.this, QuizUI.this);
         //end of gesture
-
-
         nextQuestion();
-
     }
 
     public void setTime(String timeSpent){
@@ -112,9 +110,6 @@ public class QuizUI extends AppCompatActivity implements OnGestureListener {
             case "alevel":
                 is = this.getResources().openRawResource(R.raw.alevel);
                 break;
-            case "degree":
-                is = this.getResources().openRawResource(R.raw.degree);
-                break;
             default:
                 is = this.getResources().openRawResource(R.raw.primary);
         }
@@ -123,14 +118,12 @@ public class QuizUI extends AppCompatActivity implements OnGestureListener {
         System.out.println(filename);
         String questionLine = null;
         String[] question = null;
-        System.out.println("Made it to the reading");
         try {
             while((questionLine = reader.readLine()) != null)
             {
                 question = questionLine.split(",");
                 questions.add(question);
             }
-            System.out.println("fbdfbdgb" + questions.size());
         } catch (IOException e) {
             e.printStackTrace();
         }

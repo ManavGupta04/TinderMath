@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(i);
 
     }
+
     public void selectCategory(View view){
         Intent i;
         switch(view.getId()) {
