@@ -19,10 +19,7 @@ public class question {
         readFile(filename);
     }
 
-    public String getSwipeQuestion() {
 
-        return question;
-    }
 
     public void readFile(String filename) {
         FileReader questionFile = null;

@@ -58,7 +58,7 @@
                 android:id="@+id/btnCorrect"
                 android:layout_width="135dp"
                 android:layout_height="69dp"
-                android:text="Correct"
+                android:text="Correct"/>
         </TableRow>
 
         <TableRow
@@ -69,7 +69,19 @@
                 android:id="@+id/btnWrong"
                 android:layout_width="135dp"
                 android:layout_height="69dp"
-                android:text="Wrong"
+                android:text="Wrong"/>
+        </TableRow>
+
+        <TableRow>
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <Button
+                android:id="@+id/btnQuit"
+                android:layout_width="135dp"
+                android:layout_height="69dp"
+                android:text="Quit"/>
+
         </TableRow>
     </TableLayout>
 
