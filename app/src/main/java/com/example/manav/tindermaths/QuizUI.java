@@ -61,18 +61,26 @@ public class QuizUI extends AppCompatActivity implements OnGestureListener {
         Thread thread = new Thread(new Runnable(){
             @Override
             public void run(){
-                int countdown = 20;
-                while(countdown>0) {
+                final long startTime = System.currentTimeMillis();
+                while(numberOfAnsweredQuestions<20) {
                     try {
-                        Thread.sleep(1000);
-                        countdown--;
+                        Thread.sleep(100);
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                float timeSpent = (System.currentTimeMillis() - startTime) / 1000;
+                                setTime(timeSpent);
+                            }
+                        });
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                 }
+                long endTime = System.currentTimeMillis();
+                long timeTaken = endTime - startTime;
+                float timeTakenSeconds = timeTaken / 1000;
                 Intent i = new Intent(QuizUI.this, EndGame.class);
-                System.out.println("bfdbfgbg");
-                i.putExtra("score", "Score: " + score + "/" + numberOfAnsweredQuestions);
+                i.putExtra("score", "It took you " + timeTakenSeconds + " to complete 20 questions");
                 startActivity(i);
             }
         });
@@ -85,6 +93,11 @@ public class QuizUI extends AppCompatActivity implements OnGestureListener {
 
         nextQuestion();
 
+    }
+
+    public void setTime(float timeSpent){
+        TextView time = (TextView) findViewById(R.id.lblTimeLeft);
+        time.setText("Time : " + timeSpent);
     }
 
     public void readFile(String filename){
@@ -117,6 +130,7 @@ public class QuizUI extends AppCompatActivity implements OnGestureListener {
                 question = questionLine.split(",");
                 questions.add(question);
             }
+            System.out.println("fbdfbdgb" + questions.size());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -126,7 +140,7 @@ public class QuizUI extends AppCompatActivity implements OnGestureListener {
     public String[] getNextQuestion()
     {
         Random rand = new Random();
-        int nextIntIndex = rand.nextInt(questions.size())+1;
+        int nextIntIndex = rand.nextInt(questions.size());
         String[] question = questions.get(nextIntIndex);
         questions.remove(nextIntIndex);
         return question;
@@ -161,7 +175,8 @@ public class QuizUI extends AppCompatActivity implements OnGestureListener {
         numberOfAnsweredQuestions++;
         //redraw scores
         lblScore.setText("Score: " + score + "/" + numberOfAnsweredQuestions);
-        nextQuestion();
+        if(numberOfAnsweredQuestions != 20)
+            nextQuestion();
     }
 
     public void checkAnswerCorrect(Boolean answerGiven) {
@@ -174,7 +189,8 @@ public class QuizUI extends AppCompatActivity implements OnGestureListener {
         numberOfAnsweredQuestions++;
         //redraw scores
         lblScore.setText("Score: " + score + "/" + numberOfAnsweredQuestions);
-        nextQuestion();
+        if(numberOfAnsweredQuestions != 20)
+            nextQuestion();
     }
 
     //swipe stuff below
