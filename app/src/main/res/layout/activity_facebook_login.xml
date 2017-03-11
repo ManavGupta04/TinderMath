@@ -6,25 +6,10 @@
     android:layout_height="match_parent"
     tools:context="com.example.manav.tindermaths.FacebookLogin">
 
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Login Status"
-    android:id="@+id/textView"
-    android:gravity="center"
-    tools:layout_editor_absoluteY="0dp"
-    tools:layout_editor_absoluteX="0dp" />
-
-
-
-            <com.facebook.login.widget.LoginButton
-                android:layout_width="368dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/fb_login_bn"
-                android:layout_centerInParent="true"
-                android:textStyle="bold"
-                tools:layout_editor_absoluteY="200px"
-                tools:layout_editor_absoluteX="8dp" />
-
+    <com.facebook.login.widget.LoginButton
+        android:id="@+id/login_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
 
 </android.support.constraint.ConstraintLayout>

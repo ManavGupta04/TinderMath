@@ -26,17 +26,17 @@
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent" >
 
             <TextView
                 android:id="@+id/GameOverString"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textSize="150px"
-                android:textAlignment="center"
-                android:text="GAME OVER"
+                android:layout_weight="1"
                 android:paddingBottom="40px"
-                android:layout_weight="1" />
+                android:text="GAME OVER"
+                android:textAlignment="center"
+                android:textSize="150px" />
         </TableRow>
 
         <TableRow
@@ -47,25 +47,25 @@
                 android:id="@+id/WellDoneString"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textSize="150px"
-                android:text="WELL DONE"
+                android:layout_weight="1"
                 android:paddingBottom="40px"
+                android:text="WELL DONE"
                 android:textAlignment="center"
-                android:layout_weight="1" />
+                android:textSize="150px" />
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/EndTime"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="Time"
-                android:textSize="140px"
                 android:textAlignment="center"
-                android:layout_weight="1" />
+                android:textSize="140px" />
         </TableRow>
 
         <TableRow
@@ -76,10 +76,21 @@
                 android:id="@+id/EndScore"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="Score"
-                android:textSize="140px"
                 android:textAlignment="center"
-                android:layout_weight="1" />
+                android:textSize="140px" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <Button
+                android:id="@+id/share_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SHARE" />
         </TableRow>
 
     </TableLayout>

@@ -24,42 +24,40 @@ import java.security.NoSuchAlgorithmException;
 public class FacebookLogin  extends AppCompatActivity {
 
     //global variablkes
-    LoginButton loginButton;
-    TextView textView;
-    CallbackManager callbackManager;
+    private LoginButton loginButton;
+    private CallbackManager callbackManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //FacebookSdk.sdkInitialize(getApplicationContext());
+
         setContentView(R.layout.activity_main);
-        setTitle("Log In");
-        Intent i = getIntent();
-        loginButton = (LoginButton)findViewById(R.id.fb_login_bn);
-        textView = (TextView)findViewById(R.id.textView);
         callbackManager = CallbackManager.Factory.create();
+        loginButton = (LoginButton) this.findViewById(R.id.login_button);
+
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-
-                textView.setText("Login Sucessfull");
-
+                // App code
+                
             }
 
             @Override
             public void onCancel() {
-                textView.setText("Login Cancelled");
+                // App code
             }
 
             @Override
-            public void onError(FacebookException error) {
-
+            public void onError(FacebookException e) {
+                // App code
             }
         });
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         callbackManager.onActivityResult(requestCode, resultCode, data);
     }
+
 }

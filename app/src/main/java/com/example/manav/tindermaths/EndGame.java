@@ -1,12 +1,31 @@
 package com.example.manav.tindermaths;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Rect;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.view.View;
 import android.widget.TextView;
 
+import com.facebook.FacebookSdk;
+import com.facebook.share.model.ShareLinkContent;
+import com.facebook.share.model.SharePhoto;
+import com.facebook.share.model.SharePhotoContent;
+import com.facebook.share.widget.ShareButton;
+import com.facebook.share.widget.ShareDialog;
+
 public class EndGame extends AppCompatActivity {
+
+    //global varibles for fb
+    // share button
+    private ShareButton shareButton;
+    //image
+    private Bitmap image;
+    //counter
+    private int counter = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +38,13 @@ public class EndGame extends AppCompatActivity {
         TVtime.setText(time);
         TextView TVscore = (TextView) findViewById(R.id.EndScore);
         TVscore.setText(score);
+
+        //fb test
+        Bitmap image = takeScreenShot(this);
+        SharePhoto photo = new SharePhoto.Builder()
+                .setBitmap(image)
+                .build();
+
     }
 
     @Override
@@ -38,5 +64,27 @@ public class EndGame extends AppCompatActivity {
         Intent i = new Intent(this, MainActivity.class);
         startActivity(i);
     }
+
+
+    private static Bitmap takeScreenShot(Activity activity)
+    {
+        View view = activity.getWindow().getDecorView();
+        view.setDrawingCacheEnabled(true);
+        view.buildDrawingCache();
+        Bitmap b1 = view.getDrawingCache();
+        Rect frame = new Rect();
+        activity.getWindow().getDecorView().getWindowVisibleDisplayFrame(frame);
+        int statusBarHeight = frame.top;
+        int width = activity.getWindowManager().getDefaultDisplay().getWidth();
+        int height = activity.getWindowManager().getDefaultDisplay().getHeight();
+
+        Bitmap b = Bitmap.createBitmap(b1, 0, statusBarHeight, width, height  - statusBarHeight);
+        view.destroyDrawingCache();
+        return b;
+    }
+
+
+
+
 
 }
