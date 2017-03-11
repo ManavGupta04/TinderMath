@@ -19,8 +19,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Date;
 
 import static android.support.design.R.styleable.CoordinatorLayout;
+import static android.support.design.R.styleable.TextAppearance;
 
 public class QuizUI extends AppCompatActivity implements OnGestureListener {
 
@@ -53,25 +55,28 @@ public class QuizUI extends AppCompatActivity implements OnGestureListener {
         difficulty = b.getString("id");
         lblDifficulty.setText("Difficulty: " + difficulty);
         readFile(difficulty);
-        Thread thread = new Thread(new Runnable(){
+        /*Thread thread = new Thread(new Runnable(){
             @Override
             public void run(){
-                int countdown = 20;
-                while(countdown>0) {
+                long startTime = System.currentTimeMillis();
+                while(numberOfAnsweredQuestions<20) {
                     try {
-                        Thread.sleep(1000);
-                        countdown--;
+                        Thread.sleep(10);
+                        float timeSpent = (System.currentTimeMillis() - startTime) / 1000;
+                        setTime(timeSpent);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                 }
+                long endTime = System.currentTimeMillis();
+                long timeTaken = endTime = startTime;
+                float timeTakenSeconds = timeTaken / 1000;
                 Intent i = new Intent(QuizUI.this, EndGame.class);
-                System.out.println("bfdbfgbg");
-                i.putExtra("score", "Score: " + score + "/" + numberOfAnsweredQuestions);
+                i.putExtra("score", "It took you " + timeTakenSeconds + " to complete 20 questions");
                 startActivity(i);
             }
         });
-        thread.start();
+        thread.start();*/
 
         //gesture
         gestureDetector = new GestureDetector(QuizUI.this, QuizUI.this);
@@ -82,6 +87,11 @@ public class QuizUI extends AppCompatActivity implements OnGestureListener {
 
     }
 
+
+    public void setTime(float timeSpent){
+        TextView time = (TextView) findViewById(R.id.lblTimeLeft);
+        time.setText("Time: " + timeSpent);
+    }
     public void readFile(String filename){
         switch (filename)
         {
