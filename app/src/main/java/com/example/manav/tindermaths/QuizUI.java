@@ -1,14 +1,20 @@
 package com.example.manav.tindermaths;
 
-import android.content.Intent;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
+import android.widget.Toast;
+import android.view.GestureDetector.OnGestureListener;
 
-public class QuizUI extends AppCompatActivity {
+public class QuizUI extends AppCompatActivity implements OnGestureListener {
+
 
     //Global variables
     private String difficulty;
@@ -25,6 +31,7 @@ public class QuizUI extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz_ui);
         lblDifficulty = (TextView) findViewById(R.id.lblDifficulty);
@@ -35,66 +42,134 @@ public class QuizUI extends AppCompatActivity {
         difficulty = b.getString("id");
         lblDifficulty.setText("Difficulty: " + difficulty);
         questions = new question((difficulty + ".txt"));
-        Thread thread = new Thread(new Runnable(){
-            @Override
-            public void run(){
-                int countdown = 10;
-                while(countdown>0) {
-                    try {
-                        System.out.println("HEY" + countdown);
-                        Thread.sleep(1000);
-                        countdown--;
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-                Intent i = new Intent(QuizUI.this, EndGame.class);
-                System.out.println("bfdbfgbg");
-                i.putExtra("score", "Score: " + score + "/" + numberOfAnsweredQuestions);
-                startActivity(i);
-            }
-        });
-        thread.start();
+
+        //gesture
+        gestureDetector = new GestureDetector(QuizUI.this, QuizUI.this);
+        //end of gesture
+
 
         nextQuestion();
+
     }
 
-    public void nextQuestion()
-    {
+    public void nextQuestion() {
         String[] readQuestion = questions.getNextQuestion();
         //set question text
         String questionText = readQuestion[0];
         lblQuestions.setText(questionText);
         //set if true = correct, false= wrong
-        if(readQuestion[1].equals("FALSE"))
-        {
+        if (readQuestion[1].equals("FALSE")) {
             questionAnswer = false;
-        }
-        else {
+        } else {
             questionAnswer = true;
         }
     }
 
-    public void checkAnswerCorrect(View view){
+    public void checkAnswerCorrect(View view) {
         int answerGiven = view.getId();
         boolean correct = false;
-        if(answerGiven == R.id.btnCorrect){
+        if (answerGiven == R.id.btnCorrect) {
             correct = true;
         }
-        if(correct == questionAnswer){
-            Snackbar.make(view, "Correct" , Snackbar.LENGTH_LONG).setAction("Action", null).show();
-            score ++;
+        if (correct == questionAnswer) {
+            Snackbar.make(view, "Correct", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+            score++;
         } else {
-            Snackbar.make(view, "False" , Snackbar.LENGTH_LONG).setAction("Action", null).show();
+            Snackbar.make(view, "False", Snackbar.LENGTH_LONG).setAction("Action", null).show();
         }
-        numberOfAnsweredQuestions ++;
+        numberOfAnsweredQuestions++;
         //redraw scores
-    lblScore.setText("Score: " + score + "/" + numberOfAnsweredQuestions);
+        lblScore.setText("Score: " + score + "/" + numberOfAnsweredQuestions);
         nextQuestion();
     }
 
+    //swipe stuff below
+    GestureDetector gestureDetector;
 
 
-    //gesture stuff below
+
+    @Override
+    public boolean onFling(MotionEvent motionEvent1, MotionEvent motionEvent2, float X, float Y) {
+
+        if(motionEvent1.getY() - motionEvent2.getY() > 50){
+
+            Toast.makeText(QuizUI.this , " Swipe Up " , Toast.LENGTH_LONG).show();
+
+            return true;
+        }
+
+        if(motionEvent2.getY() - motionEvent1.getY() > 50){
+
+            Toast.makeText(QuizUI.this , " Swipe Down " , Toast.LENGTH_LONG).show();
+
+            return true;
+        }
+
+        if(motionEvent1.getX() - motionEvent2.getX() > 50){
+
+            Toast.makeText(QuizUI.this , " Swipe Left " , Toast.LENGTH_LONG).show();
+
+            return true;
+        }
+
+        if(motionEvent2.getX() - motionEvent1.getX() > 50) {
+
+            Toast.makeText(QuizUI.this, " Swipe Right ", Toast.LENGTH_LONG).show();
+
+            return true;
+        }
+        else {
+
+            return true ;
+        }
+    }
+
+    @Override
+    public void onLongPress(MotionEvent arg0) {
+
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public boolean onScroll(MotionEvent arg0, MotionEvent arg1, float arg2, float arg3) {
+
+        // TODO Auto-generated method stub
+
+        return false;
+    }
+
+    @Override
+    public void onShowPress(MotionEvent arg0) {
+
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public boolean onSingleTapUp(MotionEvent arg0) {
+
+        // TODO Auto-generated method stub
+
+        return false;
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+
+        // TODO Auto-generated method stub
+
+        return gestureDetector.onTouchEvent(motionEvent);
+    }
+
+    @Override
+    public boolean onDown(MotionEvent arg0) {
+
+        // TODO Auto-generated method stub
+
+        return false;
+    }
+
+
 
 }
