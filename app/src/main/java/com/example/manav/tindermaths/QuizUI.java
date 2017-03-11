@@ -68,8 +68,8 @@ public class QuizUI extends AppCompatActivity implements OnGestureListener {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                float timeSpent = (System.currentTimeMillis() - startTime) / 1000;
-                                setTime(timeSpent);
+                                double timeSpent = (System.currentTimeMillis() - startTime)/1000.0;
+                                setTime(String.format("%.1f%n", timeSpent));
                             }
                         });
                     } catch (InterruptedException e) {
@@ -95,7 +95,7 @@ public class QuizUI extends AppCompatActivity implements OnGestureListener {
 
     }
 
-    public void setTime(float timeSpent){
+    public void setTime(String timeSpent){
         TextView time = (TextView) findViewById(R.id.lblTimeLeft);
         time.setText("Time : " + timeSpent);
     }
@@ -179,6 +179,10 @@ public class QuizUI extends AppCompatActivity implements OnGestureListener {
             nextQuestion();
     }
 
+    public void quit(View view){
+        Intent i = new Intent(this, MainActivity.class);
+        startActivity(i);
+    }
     public void checkAnswerCorrect(Boolean answerGiven) {
         if (answerGiven == questionAnswer) {
             Snackbar.make(cl, "Correct", Snackbar.LENGTH_LONG).setAction("Action", null).show();
@@ -192,6 +196,25 @@ public class QuizUI extends AppCompatActivity implements OnGestureListener {
         if(numberOfAnsweredQuestions != 20)
             nextQuestion();
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     //swipe stuff below
     GestureDetector gestureDetector;

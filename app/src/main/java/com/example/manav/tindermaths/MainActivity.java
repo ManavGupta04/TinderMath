@@ -13,6 +13,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setTitle("Choose your Category");
+        Intent i = getIntent();
     }
 
     public void goToFacebook(View view){
