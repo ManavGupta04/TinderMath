@@ -45,7 +45,7 @@ public class QuizUI extends AppCompatActivity {
         {
             questionAnswer = true;
         }
-
+        lblQuestion.setText(questionText);
     }
     /*
     //constructor
