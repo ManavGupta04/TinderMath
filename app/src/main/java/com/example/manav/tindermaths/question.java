@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Random;
 
 public class question {
 
@@ -44,7 +45,20 @@ public class question {
         } catch (IOException e) {
             System.out.println("IOException in Read");
         }*/
-        String[] hardCode = {"1+1=3", "FALSE"};
+        Random rand = new Random();
+        int x = rand.nextInt(10)+1;
+        int y = rand.nextInt(10)+1;
+        int result = x+y;
+        String correct = "TRUE";
+        if(rand.nextInt(1) == 0){
+            result = rand.nextInt(20)+1;
+            if(result != x+y){
+                correct = "FALSE";
+            }
+        }
+        String[] hardCode = new String[2];
+        hardCode[0] = Integer.toString(x) + "+" + Integer.toString(y) + "=" + Integer.toString(result);
+        hardCode[1] = correct;
         return hardCode;
     }
 
