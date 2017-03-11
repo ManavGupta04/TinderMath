@@ -19,6 +19,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Random;
 
 import static android.support.design.R.styleable.CoordinatorLayout;
 
@@ -30,6 +32,7 @@ public class QuizUI extends AppCompatActivity implements OnGestureListener {
     private boolean questionAnswer;
     private int score = 0;
     private int numberOfAnsweredQuestions = 0;
+    private ArrayList<String[]> questions = new ArrayList<String[]>();
     ConstraintLayout cl;
     //textboxes/labels
     TextView lblDifficulty;
@@ -52,7 +55,9 @@ public class QuizUI extends AppCompatActivity implements OnGestureListener {
         Bundle b = getIntent().getExtras();
         difficulty = b.getString("id");
         lblDifficulty.setText("Difficulty: " + difficulty);
+
         readFile(difficulty);
+
         Thread thread = new Thread(new Runnable(){
             @Override
             public void run(){
@@ -102,20 +107,28 @@ public class QuizUI extends AppCompatActivity implements OnGestureListener {
         }
 
         reader = new BufferedReader(new InputStreamReader(is));
+        System.out.println(filename);
+        String questionLine = null;
+        String[] question = null;
+        System.out.println("Made it to the reading");
+        try {
+            while((questionLine = reader.readLine()) != null)
+            {
+                question = questionLine.split(",");
+                questions.add(question);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
     public String[] getNextQuestion()
     {
-        String[] question = null;
-        try {
-            String questoinLine = reader.readLine();
-            question = questoinLine.split(",");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
+        Random rand = new Random();
+        int nextIntIndex = rand.nextInt(questions.size())+1;
+        String[] question = questions.get(nextIntIndex);
+        questions.remove(nextIntIndex);
         return question;
     }
 
