@@ -14,7 +14,8 @@
         android:layout_width="344dp"
         android:layout_height="495dp"
         tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="8dp">
+        tools:layout_editor_absoluteY="8dp"
+        >
 
         <TableRow
             android:layout_width="match_parent"
@@ -63,6 +64,7 @@
                 android:layout_weight="1"
                 android:layout_height="match_parent"
                 android:text="QUESTION GOES HERE"
+                android:scrollbars="vertical"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display2" />
         </TableRow>
 

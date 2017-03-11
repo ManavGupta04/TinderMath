@@ -5,6 +5,7 @@ import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.TextView;
 //import com.facebook.FacebookSdk;
@@ -50,6 +51,7 @@ public class QuizUI extends AppCompatActivity implements OnGestureListener {
         lblDifficulty = (TextView) findViewById(R.id.lblDifficulty);
         lblQuestions = (TextView) findViewById(R.id.txtQuestion);
         lblScore = (TextView) findViewById(R.id.lblTextScore);
+        lblQuestions.setMovementMethod(new ScrollingMovementMethod());
         cl = (ConstraintLayout) findViewById(R.id.layout);
         //set difficulty text
         Bundle b = getIntent().getExtras();
