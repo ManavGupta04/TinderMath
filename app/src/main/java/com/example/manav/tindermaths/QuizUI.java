@@ -12,10 +12,13 @@ public class QuizUI extends AppCompatActivity {
     //Global variables
     private String difficulty;
     private boolean questionAnswer;
+    private int score = 0;
+    private int numberOfAnsweredQuestions = 0;
+
     //textboxes/labels
     TextView lblDifficulty;
     TextView lblQuestions;
-
+    TextView lblScore;
     //setup questions class
     question questions;
 
@@ -25,6 +28,7 @@ public class QuizUI extends AppCompatActivity {
         setContentView(R.layout.activity_quiz_ui);
         lblDifficulty = (TextView) findViewById(R.id.lblDifficulty);
         lblQuestions = (TextView) findViewById(R.id.txtQuestion);
+        lblScore = (TextView) findViewById(R.id.lblTextScore);
         //set difficulty text
         Bundle b = getIntent().getExtras();
         difficulty = b.getString("id");
@@ -44,8 +48,7 @@ public class QuizUI extends AppCompatActivity {
         {
             questionAnswer = false;
         }
-        else
-        {
+        else {
             questionAnswer = true;
         }
     }
@@ -58,18 +61,14 @@ public class QuizUI extends AppCompatActivity {
         }
         if(correct == questionAnswer){
             Snackbar.make(view, "Correct" , Snackbar.LENGTH_LONG).setAction("Action", null).show();
+            score ++;
         } else {
             Snackbar.make(view, "False" , Snackbar.LENGTH_LONG).setAction("Action", null).show();
-
         }
+        numberOfAnsweredQuestions ++;
+        //redraw scores
+    lblScore.setText("Score: " + score + "/" + numberOfAnsweredQuestions);
         nextQuestion();
     }
-    /*
-    //constructor
-    public QuizUI(String )
-    {
 
-    }
-
-    */
 }
