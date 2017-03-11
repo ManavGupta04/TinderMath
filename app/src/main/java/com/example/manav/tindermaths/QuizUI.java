@@ -160,14 +160,14 @@ public class QuizUI extends AppCompatActivity implements OnGestureListener {
         if(motionEvent1.getX() - motionEvent2.getX() > 50){
 
             //Toast.makeText(QuizUI.this , " Swipe Left " , Toast.LENGTH_LONG).show();
-            checkAnswerCorrect(true);
+            checkAnswerCorrect(false);
             return true;
         }
     //swipe right
         if(motionEvent2.getX() - motionEvent1.getX() > 50) {
 
             //Toast.makeText(QuizUI.this, " Swipe Right ", Toast.LENGTH_LONG).show();
-            checkAnswerCorrect(false);
+            checkAnswerCorrect(true);
             return true;
         }
         else {
