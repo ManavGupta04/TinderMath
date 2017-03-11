@@ -18,9 +18,9 @@
         </activity>
         <activity android:name=".question" />
         <activity android:name=".QuizUI" />
-        <activity android:name=".timerThread" />
         <activity android:name=".EndGame" />
-        <activity android:name=".OnSwipeTouchListener"></activity>
+        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
     </application>
 
+    <uses-permission android:name="android.permission.INTERNET"/>
 </manifest>
