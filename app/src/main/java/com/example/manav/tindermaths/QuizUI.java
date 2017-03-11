@@ -56,10 +56,9 @@ public class QuizUI extends AppCompatActivity implements OnGestureListener {
         Thread thread = new Thread(new Runnable(){
             @Override
             public void run(){
-                int countdown = 10;
+                int countdown = 20;
                 while(countdown>0) {
                     try {
-                        System.out.println("HEY" + countdown);
                         Thread.sleep(1000);
                         countdown--;
                     } catch (InterruptedException e) {
