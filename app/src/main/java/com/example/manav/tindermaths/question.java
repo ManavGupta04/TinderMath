@@ -16,7 +16,7 @@ public class question {
 
 
     public question(String filename) {
-        readFile(filename);
+        ;readFile(filename);
     }
 
 
