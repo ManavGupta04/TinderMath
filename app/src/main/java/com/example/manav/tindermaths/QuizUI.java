@@ -1,6 +1,5 @@
 package com.example.manav.tindermaths;
 
-import android.content.Intent;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,7 +14,7 @@ public class QuizUI extends AppCompatActivity {
     private boolean questionAnswer;
     private int score = 0;
     private int numberOfAnsweredQuestions = 0;
-    Thread thread;
+
     //textboxes/labels
     TextView lblDifficulty;
     TextView lblQuestions;
@@ -36,8 +35,6 @@ public class QuizUI extends AppCompatActivity {
         lblDifficulty.setText("Difficulty: " + difficulty);
         questions = new question((difficulty + ".txt"));
         nextQuestion();
-        thread = new Thread(new timerThread());
-        thread.start();
     }
 
     public void nextQuestion()
@@ -74,8 +71,10 @@ public class QuizUI extends AppCompatActivity {
         nextQuestion();
     }
 
-    public String endGame(){
-        return "Score: " + score + "/" + numberOfAnsweredQuestions;
-    }
+
+
+
+
+    //gesture stuff below
 
 }
