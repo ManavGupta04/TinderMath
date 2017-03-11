@@ -1,14 +1,18 @@
 package com.example.manav.tindermaths;
 
+import android.support.v7.app.AppCompatActivity;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.Random;
 import com.facebook.FacebookSdk;
 
-public class question {
+public class question extends AppCompatActivity {
 
     BufferedReader fileReader;
 
@@ -19,22 +23,41 @@ public class question {
 
     public question(String filename) {
         //readFile(filename);
+        readFile();
     }
 
 
-
+    /*
     public void readFile(String filename) {
         FileReader questionFile = null;
 
         try {
-
             questionFile = new FileReader(filename);
             fileReader = new BufferedReader(questionFile);
         } catch (FileNotFoundException e) {
             System.out.println("Find Not Found");
         }
     }
-
+*/
+    public void readFile(){
+        String data = "";
+        StringBuffer sbuffer = new StringBuffer();
+        InputStream is = this.getResources().openRawResource(R.raw.primary);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+        if(is != null){
+            try {
+                System.out.println("hey");
+                while ((data = reader.readLine()) != null){
+                    System.out.println(data);
+                    sbuffer.append(data + "n");
+                }
+                System.out.println(sbuffer);
+                is.close();
+            } catch (IOException e){
+                System.out.println("werthgfvdsadvfbv");
+            }
+        }
+    }
     public String[] getNextQuestion()
     {
         /*String[] questionLines = null;

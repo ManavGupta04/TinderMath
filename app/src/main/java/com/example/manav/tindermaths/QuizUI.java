@@ -15,6 +15,11 @@ import android.view.MotionEvent;
 import android.widget.Toast;
 import android.view.GestureDetector.OnGestureListener;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
 import static android.support.design.R.styleable.CoordinatorLayout;
 
 public class QuizUI extends AppCompatActivity implements OnGestureListener {
@@ -46,7 +51,8 @@ public class QuizUI extends AppCompatActivity implements OnGestureListener {
         Bundle b = getIntent().getExtras();
         difficulty = b.getString("id");
         lblDifficulty.setText("Difficulty: " + difficulty);
-        questions = new question((difficulty + ".txt"));
+        //questions = new question((difficulty + ".txt"));
+        readFile();
         Thread thread = new Thread(new Runnable(){
             @Override
             public void run(){
@@ -75,6 +81,26 @@ public class QuizUI extends AppCompatActivity implements OnGestureListener {
 
         nextQuestion();
 
+    }
+
+    public void readFile(){
+        String data = "";
+        StringBuffer sbuffer = new StringBuffer();
+        InputStream is = this.getResources().openRawResource(R.raw.primary);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+        if(is != null){
+            try {
+                System.out.println("hey");
+                while ((data = reader.readLine()) != null){
+                    System.out.println(data);
+                    sbuffer.append(data + "n");
+                }
+                System.out.println(sbuffer);
+                is.close();
+            } catch (IOException e){
+                System.out.println("werthgfvdsadvfbv");
+            }
+        }
     }
 
     public void nextQuestion() {
