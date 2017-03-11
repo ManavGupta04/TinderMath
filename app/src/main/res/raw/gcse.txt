@@ -9,3 +9,12 @@ x^2-7x+10=0 factorises to (x-2)(x-5),TRUE
 x^6/x^3=x^2,FALSE
 x^2*x^3=x^6,FALSE
 sin(90)=1,TRUE
+The probability of throwing a prime number on a fair six sided die is 1/2,TRUE
+if a cube has a volume of 64cm^3 it's side length is 8,FALSE
+There are 360 around a single point,TRUE
+There are 180 degrees on a straight line,TRUE
+30ml in litres is 0.3,FALSE
+The area of a rectangle of side lengths 6 and 7 is 56,FALSE
+The area of a square with side length 5 is 25,TRUE
+The volume of a sphere is 4/3πr^3,TRUE
+The volume of a cone is 1/3πr^3,TRUE

@@ -1,8 +1,20 @@
 The differential of sin(x) = cos(x),TRUE
 The differential of cos(x) = -sin(x),TRUE
-There are pi radians in a circle,FALSE
+There are π radians in a circle,FALSE
 The differential of e^-x = -e^x,FALSE
 The differential of e^2x = 2e^2x,TRUE
-|x+iy|=z,TRUE
+x+iy=z,TRUE
 r(cosx+isinx)=z,TRUE
-n(cos(x)+isin(x))=(cos(nx)+isin(nx),FALSE
+n(cos(x)+isin(x))=cos(nx)+isin(nx),FALSE
+|3i+4|=5,TRUE
+log10-log5=log2,TRUE
+log3+log3=log9,TRUE
+log4=2log2,TRUE
+log8=2log3,FALSE
+cos^2(x)+sin^2(x)=0,FALSE
+sec(x)=1/cos(x),TRUE
+sin(x)/cos^2(x)=cosec(x),FALSE
+f(x)=7x^2+2x-1 then f'(x)=14x+2,TRUE
+e^(lnx)=x,TRUE
+sin(π/2)=0,FALSE
+cos(2π)=1,TRUE
