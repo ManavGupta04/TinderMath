@@ -17,7 +17,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".question" />
-        <activity android:name=".QuizUI"></activity>
+        <activity android:name=".QuizUI" />
+        <activity android:name=".timerThread" />
+        <activity android:name=".EndGame" />
+        <activity android:name=".OnSwipeTouchListener"></activity>
     </application>
 
 </manifest>
