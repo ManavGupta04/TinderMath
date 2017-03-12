@@ -16,7 +16,6 @@ import com.facebook.login.widget.LoginButton;
 public class FacebookLogin extends Activity {
 
     private CallbackManager callbackManager;
-    private TextView info;
     private LoginButton loginButton;
 
 
@@ -28,25 +27,24 @@ public class FacebookLogin extends Activity {
         callbackManager = CallbackManager.Factory.create();
 
         setContentView(R.layout.activity_facebook_login);
-        info = (TextView)findViewById(R.id.info);
         loginButton = (LoginButton)findViewById(R.id.login_button);
 
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-                info.setText("User ID:  " +
-                        loginResult.getAccessToken().getUserId() + "\n" +
-                        "Auth Token: " + loginResult.getAccessToken().getToken());
+                Intent i = new Intent(FacebookLogin.this, MainActivity.class);
+                String UserId = loginResult.getAccessToken().getUserId();
+                i.putExtra("userID", UserId);
+                startActivity(i);
+
             }
 
             @Override
             public void onCancel() {
-                info.setText("Login attempt cancelled.");
             }
 
             @Override
             public void onError(FacebookException e) {
-                info.setText("Login attempt failed.");
             }
         });
     }

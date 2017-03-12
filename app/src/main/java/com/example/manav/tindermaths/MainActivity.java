@@ -22,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
         setTitle("Choose your Category");
         addItemsOnSpinner1();
         Intent i = getIntent();
+        Bundle b = getIntent().getExtras();
+        String userID = b.getString("userId");
     }
 
     public void goToFacebook(View view){
