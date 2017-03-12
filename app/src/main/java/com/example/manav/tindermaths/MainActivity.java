@@ -32,6 +32,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+    String userID, userName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,22 +42,18 @@ public class MainActivity extends AppCompatActivity {
 
         //profile pic and name
         Bundle b = getIntent().getExtras();
-        String userID = b.getString("userID");
-        String userName = b.getString("userName");
+        userID = b.getString("userID");
+        userName = b.getString("userName");
         ProfilePictureView ppv1 = (ProfilePictureView) findViewById(R.id.profilePic);
         ppv1.setProfileId(userID);
         ppv1.setPresetSize(ProfilePictureView.NORMAL);
         TextView txtName = (TextView) findViewById(R.id.txtFbName);
-        txtName.setText(userName);
+        txtName.setText("Welcome " + userName);
 
 
 
     }
 
-    public void setFBPic(String URL)
-    {
-
-    }
     public void goToFacebook(View view) {
         Intent i = new Intent(this, FacebookLogin.class);
         startActivity(i);
@@ -66,6 +63,14 @@ public class MainActivity extends AppCompatActivity {
         Intent i = new Intent(this, CreateCustomQuiz.class);
         startActivity(i);
     }
+
+    public void editCustomQuiz(View view){
+        Intent i = new Intent(this, EditCustomQuiz.class);
+        i.putExtra("userID", userID);
+        i.putExtra("userName", userName);
+        startActivity(i);
+    }
+
 
     public void selectCategory(View view) {
         Intent i;

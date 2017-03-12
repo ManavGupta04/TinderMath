@@ -1,19 +1,16 @@
 package com.example.manav.tindermaths;
 
 import android.content.Intent;
-import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 //import com.facebook.FacebookSdk;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
-import android.widget.Toast;
 import android.view.GestureDetector.OnGestureListener;
 
 import java.io.BufferedReader;
@@ -22,10 +19,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Random;
-
-import static android.support.design.R.styleable.CoordinatorLayout;
 
 public class QuizUI extends AppCompatActivity implements OnGestureListener {
 
@@ -36,7 +30,7 @@ public class QuizUI extends AppCompatActivity implements OnGestureListener {
     private int score = 0;
     private int numberOfAnsweredQuestions = 0;
     private ArrayList<String[]> questions = new ArrayList<String[]>();
-    ConstraintLayout cl;
+    RelativeLayout rl;
     //textboxes/labels
     TextView lblDifficulty;
     TextView lblQuestions;
@@ -54,7 +48,7 @@ public class QuizUI extends AppCompatActivity implements OnGestureListener {
         lblQuestions = (TextView) findViewById(R.id.txtQuestion);
         lblScore = (TextView) findViewById(R.id.lblTextScore);
         lblQuestions.setMovementMethod(new ScrollingMovementMethod());
-        cl = (ConstraintLayout) findViewById(R.id.layout);
+        rl = (RelativeLayout) findViewById(R.id.layout);
         //set difficulty text
         Bundle b = getIntent().getExtras();
         difficulty = b.getString("id");
@@ -205,10 +199,10 @@ public class QuizUI extends AppCompatActivity implements OnGestureListener {
     }
     public void checkAnswerCorrect(Boolean answerGiven) {
         if (answerGiven == questionAnswer) {
-            Snackbar.make(cl, "Correct", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+            Snackbar.make(rl, "Correct", Snackbar.LENGTH_LONG).setAction("Action", null).show();
             score++;
         } else {
-            Snackbar.make(cl, "Wrong", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+            Snackbar.make(rl, "Wrong", Snackbar.LENGTH_LONG).setAction("Action", null).show();
         }
         numberOfAnsweredQuestions++;
         //redraw scores
