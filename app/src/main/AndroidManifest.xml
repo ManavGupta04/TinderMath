@@ -38,13 +38,12 @@
         </activity>
         <activity android:name=".QuizUI" />
         <activity android:name=".EndGame" />
-
+        <activity android:name=".CreateCustomQuiz"/>
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
 
         <activity android:name=".FacebookLogin" />
-        <activity android:name=".FragmentCustomLoginButton"></activity>
     </application>
 
 </manifest>

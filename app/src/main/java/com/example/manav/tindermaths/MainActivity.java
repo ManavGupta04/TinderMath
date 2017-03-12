@@ -58,18 +58,20 @@ public class MainActivity extends AppCompatActivity {
 
     public void addItemsOnSpinner1() {
 
-        Spinner spinner1 = (Spinner) findViewById(R.id.spinner1);
-        ArrayList<String> CustomQuizNames = readFile("customquizname.txt");
+        Spinner spinner1 = (Spinner) findViewById(R.id.spinner);
+        ArrayList<String> CustomQuizNames = readFile("customquiznames.txt");
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, CustomQuizNames);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);spinner1.setAdapter(dataAdapter);
     }
 
     public ArrayList<String> readFile(String filename) {
         FileInputStream fis;
+        Spinner spinner = (Spinner) findViewById(R.id.spinner);
         ArrayList<String> files = new ArrayList<String>();
         try {
-            fis = openFileInput(filename);
 
+            fis = openFileInput(filename);
+            spinner.setVisibility(View.VISIBLE);
             byte[] buffer = new byte[1024];
             int n;
             while ((n = fis.read(buffer)) != -1) {
@@ -78,9 +80,16 @@ public class MainActivity extends AppCompatActivity {
             }
 
         } catch(IOException e) {
-            Spinner spinner1 = (Spinner) findViewById(R.id.spinner1);
-            spinner1.setVisibility(View.INVISIBLE);
+            spinner.setVisibility(View.INVISIBLE);
         }
         return files;
+    }
+
+    public void playCustomQuiz(View view){
+        Spinner spinner = (Spinner) findViewById(R.id.spinner);
+        String fileName = String.valueOf(spinner.getSelectedItem());
+        Intent i = new Intent(this, QuizUI.class);
+        i.putExtra("id", "Name");
+        startActivity(i);
     }
 }

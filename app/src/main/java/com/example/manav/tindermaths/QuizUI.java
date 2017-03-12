@@ -17,10 +17,12 @@ import android.widget.Toast;
 import android.view.GestureDetector.OnGestureListener;
 
 import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 
 import static android.support.design.R.styleable.CoordinatorLayout;
@@ -57,7 +59,6 @@ public class QuizUI extends AppCompatActivity implements OnGestureListener {
         Bundle b = getIntent().getExtras();
         difficulty = b.getString("id");
         lblDifficulty.setText("Difficulty: " + difficulty);
-
         readFile(difficulty);
 
         Thread thread = new Thread(new Runnable(){
@@ -105,19 +106,41 @@ public class QuizUI extends AppCompatActivity implements OnGestureListener {
         {
             case "primary":
                 is = this.getResources().openRawResource(R.raw.primary);
+                reader = new BufferedReader(new InputStreamReader(is));
+                addQuestions();
                 break;
             case "gcse":
                 is = this.getResources().openRawResource(R.raw.gcse);
+                reader = new BufferedReader(new InputStreamReader(is));
+                addQuestions();
                 break;
             case "alevel":
                 is = this.getResources().openRawResource(R.raw.alevel);
+                reader = new BufferedReader(new InputStreamReader(is));
+                addQuestions();
                 break;
             default:
-                is = this.getResources().openRawResource(R.raw.primary);
+                FileInputStream fis;
+                try {
+                    fis = openFileInput(filename + ".txt");
+
+                    byte[] buffer = new byte[1024];
+                    int n;
+                    while ((n = fis.read(buffer)) != -1) {
+                        String[] question = new String(buffer, 0, n).split(",");
+                        System.out.println(Arrays.toString(question));
+                        questions.add(question);
+                    }
+                } catch(IOException e) {
+                    e.printStackTrace();
+                }
+
+
         }
 
-        reader = new BufferedReader(new InputStreamReader(is));
-        System.out.println(filename);
+    }
+
+    private void addQuestions(){
         String questionLine = null;
         String[] question = null;
         try {
@@ -130,7 +153,6 @@ public class QuizUI extends AppCompatActivity implements OnGestureListener {
             e.printStackTrace();
         }
     }
-
 
     public String[] getNextQuestion()
     {
