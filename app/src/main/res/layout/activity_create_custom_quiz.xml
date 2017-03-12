@@ -487,6 +487,8 @@
                     android:id="@+id/submit"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:background="@android:color/holo_green_light"
+                    android:textColor="@android:color/black"
                     android:text="Submit"
                     android:onClick="getQuizDetails"
                     android:layout_weight="1" />

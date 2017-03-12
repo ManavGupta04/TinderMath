@@ -34,7 +34,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="txtFbName" />
+                android:text="txtFbName"
+                android:textAlignment="center"/>
         </TableRow>
 
         <TableRow
@@ -45,6 +46,8 @@
                 android:id="@+id/AddCustomQuiz"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:background="@android:color/holo_green_light"
+                android:textColor="@android:color/black"
                 android:onClick="addCustomQuiz"
                 android:text="Add a Custom Quiz"
                 android:layout_weight="1" />
@@ -53,6 +56,8 @@
                 android:id="@+id/editCustonQuiz"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:background="@android:color/holo_red_light"
+                android:textColor="@android:color/black"
                 android:text="Edit a Custom Quiz"
                 android:onClick="editCustomQuiz"
                 android:layout_weight="1" />
@@ -66,6 +71,8 @@
                 android:id="@+id/facebook"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:background="@android:color/holo_blue_dark"
+                android:textColor="@android:color/white"
                 android:onClick="goToFacebook"
                 android:text="Change Facebook Account"
                 android:layout_weight="1" />
@@ -95,6 +102,8 @@
                 android:id="@+id/Primary"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:background="@android:color/holo_green_light"
+                android:textColor="@android:color/black"
                 android:onClick="selectCategory"
                 android:text="Primary School"
                 android:layout_weight="1" />
@@ -108,6 +117,8 @@
                 android:id="@+id/GCSE"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:background="@android:color/holo_orange_dark"
+                android:textColor="@android:color/black"
                 android:onClick="selectCategory"
                 android:text="GCSE"
                 android:layout_weight="1" />
@@ -122,6 +133,8 @@
                 android:id="@+id/A_Level"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:background="@android:color/holo_red_light"
+                android:textColor="@android:color/black"
                 android:onClick="selectCategory"
                 android:text="A Level"
                 android:layout_weight="1" />
@@ -142,6 +155,8 @@
                 android:id="@+id/playCustomQuiz"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:background="@android:color/holo_green_light"
+                android:textColor="@android:color/black"
                 android:onClick="playCustomQuiz"
                 android:text="Play Custom Quiz"
                 android:layout_weight="1" />
