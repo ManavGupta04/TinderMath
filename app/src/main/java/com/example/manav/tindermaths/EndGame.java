@@ -38,13 +38,6 @@ public class EndGame extends AppCompatActivity {
         TVtime.setText(time);
         TextView TVscore = (TextView) findViewById(R.id.EndScore);
         TVscore.setText(score);
-
-        //fb test
-        Bitmap image = takeScreenShot(this);
-        SharePhoto photo = new SharePhoto.Builder()
-                .setBitmap(image)
-                .build();
-
     }
 
     @Override
@@ -66,6 +59,13 @@ public class EndGame extends AppCompatActivity {
     }
 
 
+    public void share(View view){
+        //fb test
+        Bitmap image = takeScreenShot(this);
+        SharePhoto photo = new SharePhoto.Builder()
+                .setBitmap(image)
+                .build();
+    }
     private static Bitmap takeScreenShot(Activity activity)
     {
         View view = activity.getWindow().getDecorView();
