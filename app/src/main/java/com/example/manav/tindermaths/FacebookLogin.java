@@ -1,3 +1,5 @@
+package com.example.manav.tindermaths;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
