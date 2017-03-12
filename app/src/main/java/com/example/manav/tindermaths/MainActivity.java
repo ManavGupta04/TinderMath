@@ -21,7 +21,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         setTitle("Choose your Category");
         addItemsOnSpinner1();
-        Intent i = getIntent();
         Bundle b = getIntent().getExtras();
         String userID = b.getString("userId");
     }
