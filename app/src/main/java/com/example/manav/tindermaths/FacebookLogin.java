@@ -93,7 +93,7 @@ public class FacebookLogin extends Activity {
 
     public void guestLogin(View view){
         Intent i = new Intent(FacebookLogin.this, MainActivity.class);
-        i.putExtra("userID", "GUEST");
+        i.putExtra("userID", "00000000");
         i.putExtra("userName", "Guest");
         startActivity(i);
 

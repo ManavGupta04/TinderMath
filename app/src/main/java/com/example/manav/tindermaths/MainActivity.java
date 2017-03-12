@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
     public void goToFacebook(View view) {
         Intent i = new Intent(this, FacebookLogin.class);
         startActivity(i);
