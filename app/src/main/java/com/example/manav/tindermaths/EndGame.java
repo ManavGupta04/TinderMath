@@ -74,15 +74,14 @@ public class EndGame extends AppCompatActivity {
             button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                screenShot(v);
-                System.out.println("qwertyuiop");
+                //screenShot(v);
                    SharePhoto photo = new SharePhoto.Builder()
                            .setBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.logosmall))
                            .build();
                    SharePhotoContent content = new SharePhotoContent.Builder()
                            .addPhoto(photo)
                            .build();
-                    System.out.println("poiuytrewq");
+                System.out.println("qwertyui");
                    shareDialog.show(content);
 
             }
