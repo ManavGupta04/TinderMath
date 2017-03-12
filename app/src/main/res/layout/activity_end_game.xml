@@ -9,19 +9,21 @@
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
+        android:layout_weight="1"
         android:scrollbars="none"
-        android:layout_weight="1">
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="-127dp">
 
 
         <TableLayout
             android:layout_width="344dp"
             android:layout_height="495dp"
-            tools:layout_editor_absoluteY="8dp"
-            tools:layout_editor_absoluteX="8dp">
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="8dp">
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" >
+                android:layout_height="match_parent">
 
                 <TextView
                     android:id="@+id/textView5"
@@ -32,7 +34,7 @@
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" >
+                android:layout_height="match_parent">
 
                 <TextView
                     android:id="@+id/GameOverString"
@@ -76,7 +78,7 @@
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" >
+                android:layout_height="match_parent">
 
                 <TextView
                     android:id="@+id/EndScore"
@@ -90,7 +92,7 @@
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" >
+                android:layout_height="match_parent">
 
                 <Button
                     android:id="@+id/share_btn"
