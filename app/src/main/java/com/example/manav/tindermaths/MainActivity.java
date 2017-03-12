@@ -61,6 +61,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void addCustomQuiz(View view) {
         Intent i = new Intent(this, CreateCustomQuiz.class);
+        i.putExtra("userID", userID);
+        i.putExtra("userName", userName);
         startActivity(i);
     }
 
@@ -77,16 +79,22 @@ public class MainActivity extends AppCompatActivity {
         switch (view.getId()) {
             case R.id.Primary:
                 i = new Intent(this, QuizUI.class);
+                i.putExtra("userID", userID);
+                i.putExtra("userName", userName);
                 i.putExtra("id", "primary");
                 startActivity(i);
                 break;
             case R.id.GCSE:
                 i = new Intent(this, QuizUI.class);
+                i.putExtra("userID", userID);
+                i.putExtra("userName", userName);
                 i.putExtra("id", "gcse");
                 startActivity(i);
                 break;
             case R.id.A_Level:
                 i = new Intent(this, QuizUI.class);
+                i.putExtra("userID", userID);
+                i.putExtra("userName", userName);
                 i.putExtra("id", "alevel");
                 startActivity(i);
                 break;
@@ -129,6 +137,8 @@ public class MainActivity extends AppCompatActivity {
         String fileName = String.valueOf(spinner.getSelectedItem());
         Intent i = new Intent(this, QuizUI.class);
         i.putExtra("id", "Name");
+        i.putExtra("userID", userID);
+        i.putExtra("userName", userName);
         startActivity(i);
     }
 

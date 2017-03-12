@@ -16,12 +16,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class CreateCustomQuiz extends AppCompatActivity {
-
+    String userID, userName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_custom_quiz);
-        Intent i = getIntent();
+        Bundle b = getIntent().getExtras();
+        userID = b.getString("userID");
+        userName = b.getString("userName");
     }
     public ArrayList<String> getCurrentQuizNames() {
         FileInputStream fis;
@@ -94,6 +96,8 @@ public class CreateCustomQuiz extends AppCompatActivity {
                                                                                                 outputStream.write((quizName + "\n").getBytes());
                                                                                                 outputStream.close();
                                                                                                 Intent i = new Intent(this, MainActivity.class);
+                                                                                                i.putExtra("userID", userID);
+                                                                                                i.putExtra("userName", userName);
                                                                                                 startActivity(i);
                                                                                                 return;
                                                                                             } else {

@@ -38,6 +38,7 @@ public class QuizUI extends AppCompatActivity implements OnGestureListener {
 
     InputStream is;
     BufferedReader reader;
+    String userID, userName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +53,8 @@ public class QuizUI extends AppCompatActivity implements OnGestureListener {
         //set difficulty text
         Bundle b = getIntent().getExtras();
         difficulty = b.getString("id");
+        userID = b.getString("userID");
+        userName = b.getString("userName");
         lblDifficulty.setText("Difficulty: " + difficulty);
         readFile(difficulty);
 
@@ -79,6 +82,8 @@ public class QuizUI extends AppCompatActivity implements OnGestureListener {
                 Intent i = new Intent(QuizUI.this, EndGame.class);
                 i.putExtra("score", "You got " + (score*100)/20 + "% accuracy");
                 i.putExtra("time", "It took you " + timeTakenSeconds + " seconds to complete 20 questions");
+                i.putExtra("userID", userID);
+                i.putExtra("userName", userName);
                 startActivity(i);
             }
         });
@@ -195,6 +200,8 @@ public class QuizUI extends AppCompatActivity implements OnGestureListener {
 
     public void quit(View view){
         Intent i = new Intent(this, MainActivity.class);
+        i.putExtra("userID", userID);
+        i.putExtra("userName", userName);
         startActivity(i);
     }
     public void checkAnswerCorrect(Boolean answerGiven) {

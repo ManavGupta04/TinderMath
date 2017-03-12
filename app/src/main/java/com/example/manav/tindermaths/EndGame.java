@@ -26,6 +26,7 @@ public class EndGame extends AppCompatActivity {
     private Bitmap image;
     //counter
     private int counter = 0;
+    String userID, userName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +35,8 @@ public class EndGame extends AppCompatActivity {
         Bundle b = getIntent().getExtras();
         String score = b.getString("score");
         String time = b.getString("time");
+        userID = b.getString("userID");
+        userName = b.getString("userName");
         TextView TVtime = (TextView) findViewById(R.id.EndTime);
         TVtime.setText(time);
         TextView TVscore = (TextView) findViewById(R.id.EndScore);
@@ -55,6 +58,8 @@ public class EndGame extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         Intent i = new Intent(this, MainActivity.class);
+        i.putExtra("userID", userID);
+        i.putExtra("userName", userName);
         startActivity(i);
     }
 
