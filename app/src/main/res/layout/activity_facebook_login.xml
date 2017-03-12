@@ -48,6 +48,7 @@
                 android:layout_width="400px"
                 android:layout_height="wrap_content"
                 android:text="Sign in as a Guest"
+                android:onClick="guestLogin"
                 android:layout_gravity="center"
 
                 />

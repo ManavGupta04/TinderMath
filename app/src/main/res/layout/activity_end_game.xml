@@ -9,10 +9,8 @@
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_weight="1"
         android:scrollbars="none"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="-127dp">
+        android:layout_weight="1">
 
 
         <TableLayout
@@ -93,6 +91,12 @@
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    />
 
                 <Button
                     android:id="@+id/share_btn"

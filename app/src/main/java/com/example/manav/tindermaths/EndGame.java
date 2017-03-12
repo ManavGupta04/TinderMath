@@ -5,11 +5,13 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Rect;
 import android.net.Uri;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.facebook.CallbackManager;
@@ -27,6 +29,9 @@ import com.facebook.share.model.SharePhotoContent;
 import com.facebook.share.widget.ShareButton;
 import com.facebook.share.widget.ShareDialog;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.Arrays;
 import java.util.List;
 
@@ -43,8 +48,12 @@ public class EndGame extends AppCompatActivity {
     private CallbackManager callbackManager;
     private LoginManager loginManager;
 
+    Bitmap mbitmap;
+    Button captureScreenShot;
 
     private int usrTime;
+    private android.os.Environment Environment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,16 +73,17 @@ public class EndGame extends AppCompatActivity {
             button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               if (ShareDialog.canShow(ShareLinkContent.class)) {
-                   image = takeScreenShot(EndGame.this);
+                screenShot(v);
+                System.out.println("qwertyuiop");
+               if (ShareDialog.canShow(SharePhotoContent.class)) {
                    SharePhoto photo = new SharePhoto.Builder()
-                           .setBitmap(image)
+                           .setBitmap(mbitmap)
                            .build();
                    SharePhotoContent content = new SharePhotoContent.Builder()
                            .addPhoto(photo)
                            .build();
-
-                   shareDialog.show(content);  // Show facebook ShareDialog<br />
+                    System.out.println("poiuytrewq");
+                   shareDialog.show(content, ShareDialog.Mode.AUTOMATIC);
                 }
             }
         });
@@ -114,7 +124,7 @@ public class EndGame extends AppCompatActivity {
     private static Bitmap takeScreenShot(Activity activity)
     {
         View view = activity.getWindow().getDecorView();
-        view.setDrawingCacheEnabled(true);
+        view.setDrawingCacheEnabled(false);
         view.buildDrawingCache();
         Bitmap b1 = view.getDrawingCache();
         Rect frame = new Rect();
@@ -126,6 +136,34 @@ public class EndGame extends AppCompatActivity {
         Bitmap b = Bitmap.createBitmap(b1, 0, statusBarHeight, width, height  - statusBarHeight);
         view.destroyDrawingCache();
         return b;
+    }
+
+    public void screenShot(View view) {
+        mbitmap = getBitmapOFRootView(view);
+        //createImage(mbitmap);
+    }
+
+    public Bitmap getBitmapOFRootView(View v) {
+        View rootview = v.getRootView();
+        rootview.setDrawingCacheEnabled(false);
+        Bitmap bitmap1 = rootview.getDrawingCache();
+        System.out.println("RETURNED BItMAP");
+        return bitmap1;
+    }
+
+    public void createImage(Bitmap bmp) {
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        bmp.compress(Bitmap.CompressFormat.JPEG, 40, bytes);
+        File file = new File(Environment.getExternalStorageDirectory() +
+                "/capturedscreenandroid.jpg");
+        try {
+            file.createNewFile();
+            FileOutputStream outputStream = new FileOutputStream(file);
+            outputStream.write(bytes.toByteArray());
+            outputStream.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void checkIfPersonalBest(){

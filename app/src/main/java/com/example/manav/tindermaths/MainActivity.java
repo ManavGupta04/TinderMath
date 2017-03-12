@@ -45,10 +45,12 @@ public class MainActivity extends AppCompatActivity {
         userID = b.getString("userID");
         userName = b.getString("userName");
         ProfilePictureView ppv1 = (ProfilePictureView) findViewById(R.id.profilePic);
-        ppv1.setProfileId(userID);
-        ppv1.setPresetSize(ProfilePictureView.NORMAL);
-        ppv1.setScaleX((float)2.0);
-        ppv1.setScaleY((float)2.0);
+        if(!userID.contentEquals("GUEST")) {
+            ppv1.setProfileId(userID);
+            ppv1.setPresetSize(ProfilePictureView.NORMAL);
+            ppv1.setScaleX((float) 2.0);
+            ppv1.setScaleY((float) 2.0);
+        }
 
         TextView txtName = (TextView) findViewById(R.id.txtFbName);
         txtName.setText("Welcome " + userName);

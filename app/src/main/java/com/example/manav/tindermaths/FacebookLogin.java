@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 import com.example.manav.tindermaths.R;
@@ -58,6 +59,7 @@ public class FacebookLogin extends Activity {
                 request.executeAsync();
             }
 
+
             public void profilePic(JSONObject jsonObject)
             {
                 try {
@@ -87,5 +89,13 @@ public class FacebookLogin extends Activity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         callbackManager.onActivityResult(requestCode, resultCode, data);
+    }
+
+    public void guestLogin(View view){
+        Intent i = new Intent(FacebookLogin.this, MainActivity.class);
+        i.putExtra("userID", "GUEST");
+        i.putExtra("userName", "Guest");
+        startActivity(i);
+
     }
 }
