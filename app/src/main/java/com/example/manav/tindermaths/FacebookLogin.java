@@ -3,6 +3,8 @@ package com.example.manav.tindermaths;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.example.manav.tindermaths.R;
@@ -10,14 +12,21 @@ import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.facebook.login.widget.ProfilePictureView;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.json.JSONStringer;
 
 public class FacebookLogin extends Activity {
 
     private CallbackManager callbackManager;
     private LoginButton loginButton;
-
+    private String UserId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,16 +38,54 @@ public class FacebookLogin extends Activity {
         setContentView(R.layout.activity_facebook_login);
         loginButton = (LoginButton)findViewById(R.id.login_button);
 
-        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>(){
             @Override
             public void onSuccess(LoginResult loginResult) {
-                Intent i = new Intent(FacebookLogin.this, MainActivity.class);
-                String UserId = loginResult.getAccessToken().getUserId();
-                i.putExtra("userID", UserId);
-                startActivity(i);
+               UserId = loginResult.getAccessToken().getUserId();
 
+                           GraphRequest request = GraphRequest.newMeRequest(
+                        loginResult.getAccessToken(),
+                        new GraphRequest.GraphJSONObjectCallback() {
+
+                            @Override
+                            public void onCompleted(JSONObject object, GraphResponse response) {
+                                Log.v("Main", response.toString());
+                                profilePic(object);
+
+                            }
+                        });
+                Bundle parameters = new Bundle();
+                parameters.putString("fields", "id,name,email,gender, birthday");
+                request.setParameters(parameters);
+                request.executeAsync();
             }
 
+            public void profilePic(JSONObject jsonObject)
+            {
+                try {
+                    String fbName = jsonObject.getString("name");
+                    ProfilePictureView ppv =(ProfilePictureView) findViewById(R.id.profilePic);
+                    ppv.
+                    ppv.setPresetSize(ProfilePictureView.NORMAL);
+                    ppv.setProfileId(jsonObject.getString("id"));
+                    Intent i = new Intent(FacebookLogin.this, MainActivity.class);
+
+                    Bundle b = new Bundle();
+                    b.putParcelable("pic", ppv);
+                    i.putExtras(b);
+                    i.putExtra("userID", UserId);
+                    i.putExtra("userName", fbName);
+                    i.putPar("userPic", ppv);
+
+                    startActivity(i);
+
+
+                }
+                catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
             @Override
             public void onCancel() {
             }

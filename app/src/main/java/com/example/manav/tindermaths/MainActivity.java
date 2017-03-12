@@ -3,12 +3,14 @@ package com.example.manav.tindermaths;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.facebook.AccessToken;
 import com.facebook.FacebookSdk;
@@ -34,29 +36,24 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         setTitle("Choose your Category");
         addItemsOnSpinner1();
+
+        //profile pic and name
         Bundle b = getIntent().getExtras();
         String userID = b.getString("userId");
+        String userName = b.getString("userName");
+        ProfilePictureView profilrPicture = (ProfilePictureView) findViewById(R.id.profilePic);
+        profilrPicture = (ProfilePictureView) (getIntent().getSerializableExtra("userPic"));
+        TextView txtName = (TextView) findViewById(R.id.txtFbName);
+        txtName.setText(userName);
 
-
-        ImageView profilePic = (ImageView) findViewById(R.id.profilePic);
-        //fb profile pic
-        //https://graph.facebook.com/USER_ID/picture
-        try {
-            URL image_value = new URL("http://graph.facebook.com/"+ userID+ "/picture?type=small");
-            Bitmap bmp = null;
-            try {
-                bmp = BitmapFactory.decodeStream(image_value.openConnection().getInputStream());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            profilePic.setImageBitmap(bmp);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
 
 
     }
 
+    public void setFBPic(String URL)
+    {
+
+    }
     public void goToFacebook(View view) {
         Intent i = new Intent(this, FacebookLogin.class);
         startActivity(i);
