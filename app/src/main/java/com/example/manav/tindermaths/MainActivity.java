@@ -127,8 +127,11 @@ public class MainActivity extends AppCompatActivity {
             byte[] buffer = new byte[1024];
             int n;
             while ((n = fis.read(buffer)) != -1) {
-                String string = new String(buffer, 0, n);
-                files.add(string);
+                String string =new String(buffer, 0, n);
+                String[] stringTrimmed = string.split("\n");
+                for(int i = 0; i < stringTrimmed.length; i++){
+                    files.add(stringTrimmed[i]);
+                }
             }
 
         } catch (IOException e) {

@@ -3,6 +3,7 @@ package com.example.manav.tindermaths;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Environment;
@@ -75,16 +76,15 @@ public class EndGame extends AppCompatActivity {
             public void onClick(View v) {
                 screenShot(v);
                 System.out.println("qwertyuiop");
-               if (ShareDialog.canShow(SharePhotoContent.class)) {
                    SharePhoto photo = new SharePhoto.Builder()
-                           .setBitmap(mbitmap)
+                           .setBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.logosmall))
                            .build();
                    SharePhotoContent content = new SharePhotoContent.Builder()
                            .addPhoto(photo)
                            .build();
                     System.out.println("poiuytrewq");
-                   shareDialog.show(content, ShareDialog.Mode.AUTOMATIC);
-                }
+                   shareDialog.show(content);
+
             }
         });
     }
