@@ -1,16 +1,29 @@
 package com.example.manav.tindermaths;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.Spinner;
 
+import com.facebook.AccessToken;
 import com.facebook.FacebookSdk;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
+import com.facebook.HttpMethod;
+import com.facebook.login.widget.ProfilePictureView;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.SocketException;
+import java.net.SocketTimeoutException;
+import java.net.URL;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -23,14 +36,33 @@ public class MainActivity extends AppCompatActivity {
         addItemsOnSpinner1();
         Bundle b = getIntent().getExtras();
         String userID = b.getString("userId");
+
+
+        ImageView profilePic = (ImageView) findViewById(R.id.profilePic);
+        //fb profile pic
+        //https://graph.facebook.com/USER_ID/picture
+        try {
+            URL image_value = new URL("http://graph.facebook.com/"+ userID+ "/picture?type=small");
+            Bitmap bmp = null;
+            try {
+                bmp = BitmapFactory.decodeStream(image_value.openConnection().getInputStream());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            profilePic.setImageBitmap(bmp);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+
+
     }
 
-    public void goToFacebook(View view){
+    public void goToFacebook(View view) {
         Intent i = new Intent(this, FacebookLogin.class);
         startActivity(i);
     }
 
-    public void addCustomQuiz(View view){
+    public void addCustomQuiz(View view) {
         Intent i = new Intent(this, CreateCustomQuiz.class);
         startActivity(i);
     }
@@ -62,7 +94,8 @@ public class MainActivity extends AppCompatActivity {
         Spinner spinner1 = (Spinner) findViewById(R.id.spinner);
         ArrayList<String> CustomQuizNames = readFile("customquiznames.txt");
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, CustomQuizNames);
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);spinner1.setAdapter(dataAdapter);
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner1.setAdapter(dataAdapter);
     }
 
     public ArrayList<String> readFile(String filename) {
@@ -76,21 +109,24 @@ public class MainActivity extends AppCompatActivity {
             byte[] buffer = new byte[1024];
             int n;
             while ((n = fis.read(buffer)) != -1) {
-                String string =new String(buffer, 0, n);
+                String string = new String(buffer, 0, n);
                 files.add(string);
             }
 
-        } catch(IOException e) {
+        } catch (IOException e) {
             spinner.setVisibility(View.INVISIBLE);
         }
         return files;
     }
 
-    public void playCustomQuiz(View view){
+    public void playCustomQuiz(View view) {
         Spinner spinner = (Spinner) findViewById(R.id.spinner);
         String fileName = String.valueOf(spinner.getSelectedItem());
         Intent i = new Intent(this, QuizUI.class);
         i.putExtra("id", "Name");
         startActivity(i);
     }
+
+
+
 }
