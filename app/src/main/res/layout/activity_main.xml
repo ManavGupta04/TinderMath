@@ -87,5 +87,16 @@
                 android:text="A Level" />
 
         </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <Spinner
+                android:id="@+id/spinner1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </TableRow>
+
     </TableLayout>
 </android.support.constraint.ConstraintLayout>
