@@ -77,6 +77,8 @@
                 android:layout_width="0dip"
                 android:layout_weight="1"
                 android:layout_height="match_parent"
+                android:background="@android:color/holo_green_light"
+                android:textColor="@android:color/black"
                 android:onClick="checkAnswerCorrect"
                 android:text="Correct" />
         </TableRow>
@@ -90,6 +92,8 @@
                 android:layout_width="0dip"
                 android:layout_weight="1"
                 android:layout_height="match_parent"
+                android:background="@android:color/holo_red_light"
+                android:textColor="@android:color/black"
                 android:onClick="checkAnswerCorrect"
                 android:text="Wrong" />
         </TableRow>
@@ -103,6 +107,8 @@
                 android:layout_width="0dip"
                 android:layout_weight="1"
                 android:layout_height="match_parent"
+                android:background="@android:color/holo_red_light"
+                android:textColor="@android:color/black"
                 android:onClick="quit"
                 android:text="Quit" />
 
