@@ -78,7 +78,6 @@ public class EndGame extends AppCompatActivity {
                 //screenShot(v);
                 SharePhoto photo = new SharePhoto.Builder()
                         .setBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.logosmall))
-                        .setCaption("I scored")
                         .build();
                 SharePhotoContent content = new SharePhotoContent.Builder()
                         .addPhoto(photo)
@@ -113,72 +112,6 @@ public class EndGame extends AppCompatActivity {
         i.putExtra("userName", userName);
         startActivity(i);
     }
-
-/*
-    public void share(View view){
-        //fb test
-        Bitmap image = takeScreenShot(this);
-        SharePhoto photo = new SharePhoto.Builder()
-                .setBitmap(image)
-                .build();
-    }*/
-
-    private static Bitmap takeScreenShot(Activity activity)
-    {
-        View view = activity.getWindow().getDecorView();
-        view.setDrawingCacheEnabled(false);
-        view.buildDrawingCache();
-        Bitmap b1 = view.getDrawingCache();
-        Rect frame = new Rect();
-        activity.getWindow().getDecorView().getWindowVisibleDisplayFrame(frame);
-        int statusBarHeight = frame.top;
-        int width = activity.getWindowManager().getDefaultDisplay().getWidth();
-        int height = activity.getWindowManager().getDefaultDisplay().getHeight();
-
-        Bitmap b = Bitmap.createBitmap(b1, 0, statusBarHeight, width, height  - statusBarHeight);
-        view.destroyDrawingCache();
-        return b;
-    }
-
-    public void screenShot(View view) {
-        mbitmap = getBitmapOFRootView(view);
-        //createImage(mbitmap);
-    }
-
-    public Bitmap getBitmapOFRootView(View v) {
-        View rootview = v.getRootView();
-        rootview.setDrawingCacheEnabled(false);
-        Bitmap bitmap1 = rootview.getDrawingCache();
-        System.out.println("RETURNED BItMAP");
-        return bitmap1;
-    }
-
-    public void createImage(Bitmap bmp) {
-        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-        bmp.compress(Bitmap.CompressFormat.JPEG, 40, bytes);
-        File file = new File(Environment.getExternalStorageDirectory() +
-                "/capturedscreenandroid.jpg");
-        try {
-            file.createNewFile();
-            FileOutputStream outputStream = new FileOutputStream(file);
-            outputStream.write(bytes.toByteArray());
-            outputStream.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void checkIfPersonalBest(){
-        //check to see if current score is higher than user's best
-        /*
-        int currentScore = usrTime;
-        int previousScore;
-        try{
-            previousScore =
-        }
-        */
-    }
-
 
 
 }

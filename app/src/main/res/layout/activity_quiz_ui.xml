@@ -107,7 +107,7 @@
                 android:layout_width="0dip"
                 android:layout_weight="1"
                 android:layout_height="match_parent"
-                android:background="@android:color/holo_red_light"
+                android:background="@android:color/holo_orange_light"
                 android:textColor="@android:color/black"
                 android:onClick="quit"
                 android:text="Quit" />

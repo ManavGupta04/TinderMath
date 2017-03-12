@@ -80,7 +80,7 @@ public class QuizUI extends AppCompatActivity implements OnGestureListener {
                 long timeTaken = endTime - startTime;
                 double timeTakenSeconds = timeTaken / 1000.0;
                 Intent i = new Intent(QuizUI.this, EndGame.class);
-                i.putExtra("score", "You got " + (score*100)/20 + "% accuracy");
+                i.putExtra("score", "You got " + (score*100)/20 + "% correct");
                 i.putExtra("time", "It took you " + timeTakenSeconds + " seconds to complete 20 questions");
                 i.putExtra("userID", userID);
                 i.putExtra("userName", userName);
