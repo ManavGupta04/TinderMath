@@ -28,6 +28,7 @@ public class EndGame extends AppCompatActivity {
     private int counter = 0;
     String userID, userName;
 
+    private int usrTime;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,12 +36,15 @@ public class EndGame extends AppCompatActivity {
         Bundle b = getIntent().getExtras();
         String score = b.getString("score");
         String time = b.getString("time");
+        usrTime = Integer.valueOf(time);
+
         userID = b.getString("userID");
         userName = b.getString("userName");
         TextView TVtime = (TextView) findViewById(R.id.EndTime);
         TVtime.setText(time);
         TextView TVscore = (TextView) findViewById(R.id.EndScore);
         TVscore.setText(score);
+        checkIfPersonalBest();
     }
 
     @Override
@@ -88,7 +92,16 @@ public class EndGame extends AppCompatActivity {
         return b;
     }
 
-
+    public void checkIfPersonalBest(){
+        //check to see if current score is higher than user's best
+        /*
+        int currentScore = usrTime;
+        int previousScore;
+        try{
+            previousScore =
+        }
+        */
+    }
 
 
 
