@@ -3,7 +3,6 @@ package com.example.manav.tindermaths;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Rect;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
@@ -45,6 +44,7 @@ public class EndGame extends AppCompatActivity {
     private LoginManager loginManager;
 
 
+    private int usrTime;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +52,8 @@ public class EndGame extends AppCompatActivity {
         Bundle b = getIntent().getExtras();
         String score = b.getString("score");
         String time = b.getString("time");
+        usrTime = Integer.valueOf(time);
+
         userID = b.getString("userID");
         userName = b.getString("userName");
         TextView TVtime = (TextView) findViewById(R.id.EndTime);
@@ -73,6 +75,8 @@ public class EndGame extends AppCompatActivity {
         });
     }
 
+        checkIfPersonalBest();
+    }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event)  {
@@ -95,7 +99,7 @@ public class EndGame extends AppCompatActivity {
     }
 
 
-    /*public void share(View view){
+    public void share(View view){
         //fb test
         Bitmap image = takeScreenShot(this);
         SharePhoto photo = new SharePhoto.Builder()
@@ -120,7 +124,16 @@ public class EndGame extends AppCompatActivity {
         return b;
     }
 
-
+    public void checkIfPersonalBest(){
+        //check to see if current score is higher than user's best
+        /*
+        int currentScore = usrTime;
+        int previousScore;
+        try{
+            previousScore =
+        }
+        */
+    }
 
 
 
