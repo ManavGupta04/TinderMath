@@ -27,6 +27,7 @@ import com.facebook.share.Sharer;
 import com.facebook.share.model.ShareLinkContent;
 import com.facebook.share.model.SharePhoto;
 import com.facebook.share.model.SharePhotoContent;
+import com.facebook.share.widget.LikeView;
 import com.facebook.share.widget.ShareButton;
 import com.facebook.share.widget.ShareDialog;
 
@@ -77,6 +78,7 @@ public class EndGame extends AppCompatActivity {
                 //screenShot(v);
                 SharePhoto photo = new SharePhoto.Builder()
                         .setBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.logosmall))
+                        .setCaption("I scored")
                         .build();
                 SharePhotoContent content = new SharePhotoContent.Builder()
                         .addPhoto(photo)
@@ -86,6 +88,7 @@ public class EndGame extends AppCompatActivity {
 
             }
         });
+
     }
 
     //checkIfPersonalBest();
