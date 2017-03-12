@@ -19,6 +19,8 @@ import com.facebook.GraphResponse;
 import com.facebook.HttpMethod;
 import com.facebook.login.widget.ProfilePictureView;
 
+import org.json.JSONObject;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -39,10 +41,11 @@ public class MainActivity extends AppCompatActivity {
 
         //profile pic and name
         Bundle b = getIntent().getExtras();
-        String userID = b.getString("userId");
+        String userID = b.getString("userID");
         String userName = b.getString("userName");
-        ProfilePictureView profilrPicture = (ProfilePictureView) findViewById(R.id.profilePic);
-        profilrPicture = (ProfilePictureView) (getIntent().getSerializableExtra("userPic"));
+        ProfilePictureView ppv1 = (ProfilePictureView) findViewById(R.id.profilePic);
+        ppv1.setProfileId(userID);
+        ppv1.setPresetSize(ProfilePictureView.NORMAL);
         TextView txtName = (TextView) findViewById(R.id.txtFbName);
         txtName.setText(userName);
 

@@ -42,7 +42,6 @@ public class FacebookLogin extends Activity {
             @Override
             public void onSuccess(LoginResult loginResult) {
                UserId = loginResult.getAccessToken().getUserId();
-
                            GraphRequest request = GraphRequest.newMeRequest(
                         loginResult.getAccessToken(),
                         new GraphRequest.GraphJSONObjectCallback() {
@@ -64,19 +63,17 @@ public class FacebookLogin extends Activity {
             {
                 try {
                     String fbName = jsonObject.getString("name");
-                    ProfilePictureView ppv =(ProfilePictureView) findViewById(R.id.profilePic);
-                    ppv.
-                    ppv.setPresetSize(ProfilePictureView.NORMAL);
+                   ProfilePictureView ppv =(ProfilePictureView) findViewById(R.id.profilePic);
+
+                   ppv.setPresetSize(ProfilePictureView.NORMAL);
                     ppv.setProfileId(jsonObject.getString("id"));
                     Intent i = new Intent(FacebookLogin.this, MainActivity.class);
 
                     Bundle b = new Bundle();
-                    b.putParcelable("pic", ppv);
                     i.putExtras(b);
                     i.putExtra("userID", UserId);
                     i.putExtra("userName", fbName);
-                    i.putPar("userPic", ppv);
-
+                    i.putExtra("userPic", R.id.profilePic);
                     startActivity(i);
 
 

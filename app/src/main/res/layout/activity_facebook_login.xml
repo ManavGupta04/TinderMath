@@ -13,10 +13,4 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="30dp"
         android:layout_marginBottom="30dp" />
-
-    <com.facebook.login.widget.ProfilePictureView
-        android:id="@+id/profilePic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center" />
-</android.support.constraint.ConstraintLayout>
+    </android.support.constraint.ConstraintLayout>
