@@ -126,10 +126,13 @@ public class QuizUI extends AppCompatActivity implements OnGestureListener {
 
                     byte[] buffer = new byte[1024];
                     int n;
+                    String questionList = null;
                     while ((n = fis.read(buffer)) != -1) {
-                        String[] question = new String(buffer, 0, n).split(",");
-                        System.out.println(Arrays.toString(question));
-                        questions.add(question);
+                        questionList = new String(buffer, 0, n);
+                    }
+                    String[] questionListTrimmed = questionList.split("\n");
+                    for(int i = 0;i<questionListTrimmed.length;i++){
+                        questions.add(questionListTrimmed[i].split(","));
                     }
                 } catch(IOException e) {
                     e.printStackTrace();
