@@ -12,34 +12,45 @@
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent" >
 
             <ImageView
                 android:id="@+id/logo"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@drawable/logosmall"
+                android:layout_weight="1"
                 android:paddingBottom="50px"
-                android:layout_weight="1" />
 
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/logosmall" />
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent">
 
             <com.facebook.login.widget.LoginButton
                 android:id="@+id/login_button"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="30dp"
+                android:layout_marginBottom="1px"
                 android:layout_marginTop="30dp"
                 android:layout_weight="1" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <Button
+                android:id="@+id/btnGuest"
+                android:layout_width="400px"
+                android:layout_height="wrap_content"
+                android:text="Sign in as a Guest"
+                android:layout_gravity="center"
+
+                />
         </TableRow>
 
     </TableLayout>
