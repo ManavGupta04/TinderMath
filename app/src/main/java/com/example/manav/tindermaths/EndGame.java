@@ -71,24 +71,24 @@ public class EndGame extends AppCompatActivity {
         TVscore.setText(score);
         Button button = (Button) findViewById(R.id.share_btn);
         final ShareDialog shareDialog = new ShareDialog(this);  // intialize facebook shareDialog.
-            button.setOnClickListener(new View.OnClickListener() {
+        button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //screenShot(v);
-                   SharePhoto photo = new SharePhoto.Builder()
-                           .setBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.logosmall))
-                           .build();
-                   SharePhotoContent content = new SharePhotoContent.Builder()
-                           .addPhoto(photo)
-                           .build();
+                SharePhoto photo = new SharePhoto.Builder()
+                        .setBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.logosmall))
+                        .build();
+                SharePhotoContent content = new SharePhotoContent.Builder()
+                        .addPhoto(photo)
+                        .build();
                 System.out.println("qwertyui");
-                   shareDialog.show(content);
+                shareDialog.show(content);
 
             }
         });
     }
 
-        //checkIfPersonalBest();
+    //checkIfPersonalBest();
 
 
     @Override
