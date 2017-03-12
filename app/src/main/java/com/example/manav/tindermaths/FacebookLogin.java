@@ -63,10 +63,6 @@ public class FacebookLogin extends Activity {
             {
                 try {
                     String fbName = jsonObject.getString("name");
-                   ProfilePictureView ppv =(ProfilePictureView) findViewById(R.id.profilePic);
-
-                   ppv.setPresetSize(ProfilePictureView.NORMAL);
-                    ppv.setProfileId(jsonObject.getString("id"));
                     Intent i = new Intent(FacebookLogin.this, MainActivity.class);
 
                     Bundle b = new Bundle();
