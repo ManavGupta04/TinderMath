@@ -52,7 +52,6 @@ public class EndGame extends AppCompatActivity {
         Bundle b = getIntent().getExtras();
         String score = b.getString("score");
         String time = b.getString("time");
-        usrTime = Integer.valueOf(time);
 
         userID = b.getString("userID");
         userName = b.getString("userName");
@@ -66,17 +65,22 @@ public class EndGame extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                if (ShareDialog.canShow(ShareLinkContent.class)) {
-                        ShareLinkContent linkContent = new ShareLinkContent.Builder()
-                            .setContentTitle("How to integrate Linkedin from your app")
-                            .build();
-                   shareDialog.show(linkContent);  // Show facebook ShareDialog<br />
+                   image = takeScreenShot(EndGame.this);
+                   SharePhoto photo = new SharePhoto.Builder()
+                           .setBitmap(image)
+                           .build();
+                   SharePhotoContent content = new SharePhotoContent.Builder()
+                           .addPhoto(photo)
+                           .build();
+
+                   shareDialog.show(content);  // Show facebook ShareDialog<br />
                 }
             }
         });
     }
 
-        checkIfPersonalBest();
-    }
+        //checkIfPersonalBest();
+
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event)  {
@@ -98,7 +102,7 @@ public class EndGame extends AppCompatActivity {
         startActivity(i);
     }
 
-
+/*
     public void share(View view){
         //fb test
         Bitmap image = takeScreenShot(this);
